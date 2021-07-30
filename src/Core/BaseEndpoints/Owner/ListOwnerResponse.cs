@@ -10,5 +10,6 @@ namespace Weelo.Core.BaseEndpoints.Owner
         public ListOwnerResponse(Guid correlationId) : base(correlationId) { }
         public ListOwnerResponse() { }
         public List<OwnerDto> Owners { get; set; } = new List<OwnerDto>();
+        public string Message { get; set; }
     }
 }

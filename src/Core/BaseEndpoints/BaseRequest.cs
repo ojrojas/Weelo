@@ -6,6 +6,6 @@
     /// <author>Oscar Julian Rojas</author>
     public class BaseRequest : BaseMessage
     {
-
+        
     }
 }

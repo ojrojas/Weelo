@@ -14,5 +14,16 @@ namespace Weelo.Core.Entities
         public string Address { get; set; }
         public string Photo { get; set; }
         public DateTime Birthday { get; set; }
+
+        public void UpdateProperties(string name, string address, string photo, DateTime birthday, Guid modifiedBy, bool state)
+        {
+            Name = name;
+            Address = address;
+            Photo = photo;
+            Birthday = birthday;
+            ModifiedBy = modifiedBy;
+            ModifiedOn = DateTime.Now;
+            State = state;
+        }
     }
 }

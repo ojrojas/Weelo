@@ -13,5 +13,6 @@ namespace Weelo.Core.Entities
         public virtual DateTime CreateOn { get; set; }
         public virtual Guid ModifiedBy { get; set; }
         public virtual DateTime ModifiedOn { get; set; }
+        public virtual bool State { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace Weelo.Core.BaseEndpoints.Owner
         public DeleteOwnerResponse(Guid correlationId) : base(correlationId) { }
         public DeleteOwnerResponse() { }
 
-        public OwnerDto Owner { get; set; } = new OwnerDto();
+        public OwnerDto OwnerDto { get; set; }
+        public string Message { get; set; }
     }
 }

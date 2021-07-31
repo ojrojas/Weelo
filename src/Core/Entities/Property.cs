@@ -18,5 +18,16 @@ namespace Weelo.Core.Entities
         public Guid OwnerId { get; set; }
         public Owner Owner { get; set; }
 
+        public void UpdateProperties(string name, string address, decimal price, int codeInternal, int year, Guid ownerId, Guid modifiedBy, bool state)
+        {
+            Name = name;
+            Address = address;
+            Price = price;
+            CodeInternal = codeInternal;
+            Year = year;
+            OwnerId = ownerId;
+            ModifiedBy = modifiedBy;
+            State = state;
+        }
     }
 }

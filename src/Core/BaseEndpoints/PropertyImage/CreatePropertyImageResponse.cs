@@ -8,5 +8,6 @@ namespace Weelo.Core.BaseEndpoints.Property
         public CreatePropertyImageResponse(Guid correlationId): base(correlationId) { }
         public CreatePropertyImageResponse() { }
         public PropertyImageDto PropertyDto { get; set; } = new PropertyImageDto();
+        public string Message { get; set; }
     }
 }

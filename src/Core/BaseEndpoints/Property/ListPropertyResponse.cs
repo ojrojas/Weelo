@@ -8,6 +8,7 @@ namespace Weelo.Core.BaseEndpoints.Property
     {
         public ListPropertyResponse(Guid correlationId) : base(correlationId) { }
         public ListPropertyResponse() { }
-        public List<PropertyDto> PropertyDto { get; set; } = new List<PropertyDto>();
+        public List<PropertyDto> Properties { get; set; } = new List<PropertyDto>();
+        public string Message { get; set; }
     }
 }

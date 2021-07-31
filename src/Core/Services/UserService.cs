@@ -40,7 +40,6 @@ namespace Weelo.Core.Services
         {
             var response = new UpdateUserResponse(request.CorrelationId);
             _logger.LogInformation($"Update User Request - {request.CorrelationId}");
-            var user = _mapper.Map<User>(request);
             var userToUpdate = await _asyncRepository.GetByIdAsync(request.UserId, cancellationToken);
 
             userToUpdate.UpdateProperties(
@@ -51,7 +50,7 @@ namespace Weelo.Core.Services
                 modifiedBy: request.UserDto.ModifiedBy,
                 state: request.UserDto.State);
 
-            var result = await _asyncRepository.AddAsync(user, cancellationToken);
+            var result = await _asyncRepository.UpdateAsync(userToUpdate, cancellationToken);
             if (result == null)
                 response.Message = "Error to update user";
 

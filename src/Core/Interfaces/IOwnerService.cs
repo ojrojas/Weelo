@@ -1,7 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Weelo.Core.BaseEndpoints.Owner;
-using Weelo.Core.Dtos;
 
 namespace Weelo.Core.Interfaces
 {

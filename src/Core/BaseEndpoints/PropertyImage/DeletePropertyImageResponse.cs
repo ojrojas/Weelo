@@ -7,6 +7,7 @@ namespace Weelo.Core.BaseEndpoints.Property
     {
         public DeletePropertyImageResponse(Guid correlationId) : base(correlationId) { }
         public DeletePropertyImageResponse() { }
-        public PropertyImageDto PropertyDto { get; set; } = new PropertyImageDto();
+        public PropertyImageDto PropertyImageDto { get; set; } = new PropertyImageDto();
+        public string Message { get; set; }
     }
 }

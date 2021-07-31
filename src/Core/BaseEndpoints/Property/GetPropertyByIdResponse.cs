@@ -5,10 +5,11 @@ using Weelo.Core.Dtos;
 
 namespace Weelo.Core.BaseEndpoints.Property
 {
-    class GetPropertyByIdResponse : BaseResponse
+    public class GetPropertyByIdResponse : BaseResponse
     {
         public GetPropertyByIdResponse(Guid correlationId) : base(correlationId) { }
         public GetPropertyByIdResponse() { }
         public PropertyDto PropertyDto { get; set; } = new PropertyDto();
+        public string Message { get; set; }
     }
 }

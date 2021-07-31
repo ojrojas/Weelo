@@ -14,5 +14,14 @@ namespace Weelo.Core.Entities
         public Guid PropertyId { get; set; }
         public string File { get; set; }
         public bool Enabled { get; set; }
+
+        public void UpdateProperties(Guid propertyId, string file, bool enabled, Guid modifiedBy, bool state)
+        {
+            PropertyId = propertyId;
+            File = file;
+            Enabled = enabled;
+            ModifiedBy = modifiedBy;
+            State = state;
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace Weelo.Api.Endpoints.Login
           Tags = new[] { "LoginEndpoinst" })]
         public override async Task<ActionResult<LoginResponse>> HandleAsync(LoginRequest request, CancellationToken cancellationToken = default)
         {
-            return await _loginService.LoginUser(request, cancellationToken);
+            return await _loginService.LoginUserAsync(request, cancellationToken);
         }
     }
 }

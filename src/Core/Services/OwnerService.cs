@@ -40,7 +40,6 @@ namespace Weelo.Core.Services
         {
             var response = new UpdateOwnerResponse(request.CorrelationId);
             _logger.LogInformation($"Update Owner Request - {request.CorrelationId}");
-            var owner = _mapper.Map<Owner>(request);
             var ownerToUpdate = await _asyncRepository.GetByIdAsync(request.OwnerId, cancellationToken);
 
             ownerToUpdate.UpdateProperties(
@@ -51,7 +50,7 @@ namespace Weelo.Core.Services
                 modifiedBy: request.OwnerDto.ModifiedBy,
                 state: request.OwnerDto.State);
 
-            var result = await _asyncRepository.AddAsync(owner, cancellationToken);
+            var result = await _asyncRepository.UpdateAsync(ownerToUpdate, cancellationToken);
             if (result == null)
                 response.Message = "Error to update owner";
 

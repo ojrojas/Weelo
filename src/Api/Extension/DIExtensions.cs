@@ -20,7 +20,8 @@ namespace Weelo.Api.Extension
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IOwnerService, OwnerService>();
             services.AddScoped<ILoginService, LoginService>();
-
+            services.AddScoped<IPropertyImageService, PropertyImageService>();
+            services.AddScoped<IPropertyService, PropertyService>();
 
             return services;
         }

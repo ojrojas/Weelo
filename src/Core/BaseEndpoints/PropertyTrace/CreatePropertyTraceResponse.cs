@@ -8,5 +8,6 @@ namespace Weelo.Core.BaseEndpoints.Property
         public CreatePropertyTraceResponse(Guid correlationId): base(correlationId) { }
         public CreatePropertyTraceResponse() { }
         public PropertyTraceDto PropertyDto { get; set; } = new PropertyTraceDto();
+        public string Message { get; set; }
     }
 }

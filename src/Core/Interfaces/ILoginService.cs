@@ -6,6 +6,6 @@ namespace Weelo.Core.Interfaces
 {
     public interface ILoginService
     {
-        Task<LoginResponse> LoginUser(LoginRequest request, CancellationToken cancellationToken);
+        Task<LoginResponse> LoginUserAsync(LoginRequest request, CancellationToken cancellationToken);
     }
 }

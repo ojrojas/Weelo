@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace Api.Extension
+namespace Weelo.Api.Extension
 {
     public static class JwtExtensions
     {

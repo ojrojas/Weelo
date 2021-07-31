@@ -32,6 +32,11 @@ namespace Weelo.Infraestructure.Data
         /// </summary>
         /// <param name="context">DbContext model</param>
         /// <param name="specificationEvaluator">Specificator instance</param>
+        public GenericEfRepository(WeeloDbContext context) : this(context, SpecificationEvaluator.Default)
+        {
+           
+        }
+
         public GenericEfRepository(WeeloDbContext context, ISpecificationEvaluator specificationEvaluator)
         {
             _context = context;

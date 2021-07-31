@@ -1,15 +1,12 @@
 ﻿using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Weelo.Core.BaseEndpoints.User;
 using Weelo.Core.Interfaces;
 
-namespace Api.Endpoints.User
+namespace Weelo.Api.Endpoints.User
 {
     public class List : BaseAsyncEndpoint.WithoutRequest.WithResponse<ListUserResponse>
     {

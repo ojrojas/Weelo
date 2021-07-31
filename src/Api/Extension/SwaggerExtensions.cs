@@ -1,10 +1,10 @@
-﻿using Api.Filters;
+﻿using Weelo.Api.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System.Collections.Generic;
 
-namespace Api.Extension
+namespace Weelo.Api.Extension
 {
     public  static class SwaggerExtensions
     {

@@ -15,14 +15,12 @@ namespace Weelo.Core.Services
         private readonly IAsyncRepository<User> _asyncRepository;
         private readonly ILogger<UserService> _logger;
         private readonly IMapper _mapper;
-        private readonly ITokenClaims _tokenClaims;
 
-        public UserService(IAsyncRepository<User> asyncRepository, ILogger<UserService> logger, IMapper mapper, ITokenClaims tokenClaims)
+        public UserService(IAsyncRepository<User> asyncRepository, ILogger<UserService> logger, IMapper mapper)
         {
             _asyncRepository = asyncRepository;
             _logger = logger;
             _mapper = mapper;
-            _tokenClaims = tokenClaims;
         }
 
         public async Task<CreateUserResponse> CreateUserAsync(CreateUserRequest request, CancellationToken cancellationToken)

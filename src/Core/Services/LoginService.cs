@@ -32,7 +32,7 @@ namespace Weelo.Core.Services
             if (result == null)
                 response.Message = "login user invalid!";
 
-            response.Auth_Token = await _tokenClaims.GetTokenAsync(result);
+            response.Auth_Token = result != null ? await _tokenClaims.GetTokenAsync(result) : string.Empty;
             return response;
         }
     }

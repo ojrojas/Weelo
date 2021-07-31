@@ -5,7 +5,7 @@ using Weelo.Core.Mappers;
 using Weelo.Core.Services;
 using Weelo.Infraestructure.Data;
 
-namespace Api.Extension
+namespace Weelo.Api.Extension
 {
     public static class DIExtensions
     {
@@ -15,10 +15,11 @@ namespace Api.Extension
 
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(GenericEfRepository<>));
+
+            services.AddScoped<ITokenClaims, TokenClaims>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IOwnerService, OwnerService>();
             services.AddScoped<ILoginService, LoginService>();
-            services.AddScoped<ITokenClaims, TokenClaims>();
 
 
             return services;

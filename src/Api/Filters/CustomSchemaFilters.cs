@@ -1,7 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Api.Filters
+namespace Weelo.Api.Filters
 {
     public class CustomSchemaFilters : ISchemaFilter
     {

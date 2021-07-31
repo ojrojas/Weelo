@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Api.Extension
+namespace Weelo.Api.Extension
 {
     internal static class CorsExtensions
     {

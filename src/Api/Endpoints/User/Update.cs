@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Weelo.Core.BaseEndpoints.User;
 using Weelo.Core.Interfaces;
 
-namespace Api.Endpoints.User
+namespace Weelo.Api.Endpoints.User
 {
     public class Update : BaseAsyncEndpoint.WithRequest<UpdateUserRequest>.WithResponse<UpdateUserResponse>
     {

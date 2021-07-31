@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Weelo.Core.BaseEndpoints.Login;
 using Weelo.Core.Interfaces;
 
-namespace Api.Endpoints.Login
+namespace Weelo.Api.Endpoints.Login
 {
     public class Login : BaseAsyncEndpoint.WithRequest<LoginRequest>.WithResponse<LoginResponse>
     {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Weelo.Core.BaseEndpoints.Owner;
 using Weelo.Core.Interfaces;
 
-namespace Api.Endpoints.Owner
+namespace Weelo.Api.Endpoints.Owner
 {
     public class List : BaseAsyncEndpoint.WithoutRequest.WithResponse<ListOwnerResponse>
     {

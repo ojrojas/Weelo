@@ -50,6 +50,8 @@ namespace Weelo.Core.Services
                 codeInternal: request.PropertyDto.CodeInternal,
                 year: request.PropertyDto.Year,
                 ownerId: request.PropertyDto.OwnerId,
+                calification: request.PropertyDto.Calification,
+                rating: request.PropertyDto.Rating,
                 modifiedBy: request.PropertyDto.ModifiedBy,
                 state: request.PropertyDto.State);
 

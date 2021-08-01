@@ -16,5 +16,7 @@ namespace Weelo.Core.Dtos
         public int CodeInternal { get; set; }
         public int Year { get; set; }
         public Guid OwnerId { get; set; }
+        public int Calification { get; set; }
+        public int Rating { get; set; }
     }
 }

@@ -16,5 +16,16 @@ namespace Weelo.Core.Entities
         public string Name { get; set; }
         public decimal Value { get; set; }
         public decimal Tax { get; set; }
+
+        public void UpdateProperties(Guid propertyId, DateTime dateSale, string name, decimal value, decimal tax, Guid modifiedBy, bool state)
+        {
+            PropertyId = propertyId;
+            DateSale = dateSale;
+            Name = name;
+            Value = value;
+            Tax = tax;
+            ModifiedBy = modifiedBy;
+            State = state;
+        }
     }
 }

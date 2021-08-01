@@ -8,7 +8,7 @@ namespace Weelo.Core.Interfaces
     {
         Task<CreatePropertyResponse> CreatePropertyAsync(CreatePropertyRequest request, CancellationToken cancellationToken);
         Task<DeletePropertyResponse> DeletePropertyAsync(DeletePropertyRequest request, CancellationToken cancellationToken);
-        Task<GetPropertyByIdResponse> GetPropertyByIdAsync(GetByIdProertyImageRequest request, CancellationToken cancellationToken);
+        Task<GetPropertyByIdResponse> GetPropertyByIdAsync(GetByIdProertyRequest request, CancellationToken cancellationToken);
         Task<ListPropertyResponse> ListPropertyAsync(CancellationToken cancellationToken);
         Task<UpdatePropertyResponse> UpdatePropertyAsync(UpdatePropertyRequest request, CancellationToken cancellationToken);
     }

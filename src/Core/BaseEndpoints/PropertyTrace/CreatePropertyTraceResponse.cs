@@ -1,7 +1,7 @@
 ﻿using System;
 using Weelo.Core.Dtos;
 
-namespace Weelo.Core.BaseEndpoints.Property
+namespace Weelo.Core.BaseEndpoints.PropertyTrace
 {
     public class CreatePropertyTraceResponse : BaseResponse  
     {

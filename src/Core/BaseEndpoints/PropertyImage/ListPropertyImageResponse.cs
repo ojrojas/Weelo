@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Weelo.Core.Dtos;
 
-namespace Weelo.Core.BaseEndpoints.Property
+namespace Weelo.Core.BaseEndpoints.PropertyImage
 {
     public class ListPropertyImageResponse : BaseResponse
     {

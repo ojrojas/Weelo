@@ -2,7 +2,7 @@
 
 namespace Weelo.Core.BaseEndpoints.PropertyImage
 {
-    class GetPropertyImageByIdRequest : BaseRequest
+    public class GetByIdProertyImageRequest : BaseRequest
     {
         public Guid PropertyImageId { get; set; }
     }

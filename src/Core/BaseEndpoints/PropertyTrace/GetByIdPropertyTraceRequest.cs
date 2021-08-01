@@ -2,7 +2,7 @@
 
 namespace Weelo.Core.BaseEndpoints.PropertyTrace
 {
-    public class GetPropertyTraceByIdRequest: BaseRequest
+    public class GetByIdPropertyTraceRequest : BaseRequest
     {
         public Guid PropertyTraceId { get; set; }
     }

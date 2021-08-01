@@ -1,13 +1,13 @@
 ﻿using System;
 using Weelo.Core.Dtos;
 
-namespace Weelo.Core.BaseEndpoints.Property
+namespace Weelo.Core.BaseEndpoints.PropertyImage
 {
-    public class GetPropertyImageByIdResponse : BaseResponse
+    public class GetByIdPropertyImageResponse : BaseResponse
     {
-        public GetPropertyImageByIdResponse(Guid correlationId) : base(correlationId) { }
-        public GetPropertyImageByIdResponse() { }
-        public PropertyImageDto PropertyDto { get; set; } = new PropertyImageDto();
+        public GetByIdPropertyImageResponse(Guid correlationId) : base(correlationId) { }
+        public GetByIdPropertyImageResponse() { }
+        public PropertyImageDto PropertyImageDto { get; set; } = new PropertyImageDto();
         public string Message { get; set; }
     }
 }

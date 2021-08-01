@@ -3,7 +3,6 @@ using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Weelo.Core.BaseEndpoints.Property;
 using Weelo.Core.BaseEndpoints.PropertyImage;
 using Weelo.Core.Dtos;
 using Weelo.Core.Entities;
@@ -24,7 +23,7 @@ namespace Weelo.Core.Services
             _logger = logger;
         }
 
-        public async Task<CreatePropertyImageResponse> CreatePropertyImageAsync(CreatePropertyRequest request, CancellationToken cancellationToken)
+        public async Task<CreatePropertyImageResponse> CreatePropertyImageAsync(CreatePropertyImageRequest request, CancellationToken cancellationToken)
         {
             var response = new CreatePropertyImageResponse(request.CorrelationId);
             _logger.LogInformation($"Create PropertyImage Request - {request.CorrelationId}");
@@ -33,7 +32,7 @@ namespace Weelo.Core.Services
             if (result == null)
                 response.Message = "Error to create property image";
 
-            response.PropertyDto = _mapper.Map<PropertyImageDto>(result);
+            response.PropertyImageDto = _mapper.Map<PropertyImageDto>(result);
             return response;
         }
 
@@ -55,11 +54,11 @@ namespace Weelo.Core.Services
             if (result == null)
                 response.Message = "Error to update property image";
 
-            response.PropertyDto = _mapper.Map<PropertyImageDto>(result);
+            response.PropertyImageDto = _mapper.Map<PropertyImageDto>(result);
             return response;
         }
 
-        public async Task<DeletePropertyImageResponse> DeletePropertyAsync(DeletePropertyImageRequest request, CancellationToken cancellationToken)
+        public async Task<DeletePropertyImageResponse> DeletePropertyImageAsync(DeletePropertyImageRequest request, CancellationToken cancellationToken)
         {
             var response = new DeletePropertyImageResponse(request.CorrelationId);
             _logger.LogInformation($"Delete PropertyImage Request - {request.CorrelationId}");
@@ -73,15 +72,15 @@ namespace Weelo.Core.Services
             return response;
         }
 
-        public async Task<GetPropertyImageByIdResponse> GetPropertyImageByIdAsync(GetByIdProertyImageRequest request, CancellationToken cancellationToken)
+        public async Task<GetByIdPropertyImageResponse> GetPropertyImageByIdAsync(GetByIdProertyImageRequest request, CancellationToken cancellationToken)
         {
-            var response = new GetPropertyImageByIdResponse(request.CorrelationId);
+            var response = new GetByIdPropertyImageResponse(request.CorrelationId);
             _logger.LogInformation($"Get PropertyImage By Id Request - {request.CorrelationId}");
-            var result = await _asyncRepository.GetByIdAsync(request.PropertyId, cancellationToken);
+            var result = await _asyncRepository.GetByIdAsync(request.PropertyImageId, cancellationToken);
             if (result == null)
                 response.Message = "Error to get property image";
 
-            response.PropertyDto = _mapper.Map<PropertyImageDto>(result);
+            response.PropertyImageDto = _mapper.Map<PropertyImageDto>(result);
             return response;
         }
 

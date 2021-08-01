@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;
 using Weelo.Core.BaseEndpoints.Login;
@@ -15,7 +14,7 @@ namespace Weelo.Core.Services
         private readonly ILogger<LoginService> _logger;
         private readonly ITokenClaims _tokenClaims;
 
-        public LoginService(IAsyncRepository<User> asyncRepository, ILogger<LoginService> logger, IMapper mapper, ITokenClaims tokenClaims)
+        public LoginService(IAsyncRepository<User> asyncRepository, ILogger<LoginService> logger, ITokenClaims tokenClaims)
         {
             _asyncRepository = asyncRepository;
             _logger = logger;

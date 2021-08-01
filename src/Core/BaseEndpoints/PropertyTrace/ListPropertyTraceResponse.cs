@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using Weelo.Core.Dtos;
 
-namespace Weelo.Core.BaseEndpoints.Property
+namespace Weelo.Core.BaseEndpoints.PropertyTrace
 {
     public class ListPropertyTraceResponse : BaseResponse
     {
         public ListPropertyTraceResponse(Guid correlationId) : base(correlationId) { }
         public ListPropertyTraceResponse() { }
-        public List<PropertyDto> PropertyDto { get; set; } = new List<PropertyDto>();
+        public List<PropertyTraceDto> PropertiesTrace { get; set; } = new List<PropertyTraceDto>();
         public string Message { get; set; }
     }
 }

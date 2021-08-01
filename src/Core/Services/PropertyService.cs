@@ -75,7 +75,7 @@ namespace Weelo.Core.Services
             return response;
         }
 
-        public async Task<GetPropertyByIdResponse> GetPropertyByIdAsync(GetByIdProertyImageRequest request, CancellationToken cancellationToken)
+        public async Task<GetPropertyByIdResponse> GetPropertyByIdAsync(GetByIdProertyRequest request, CancellationToken cancellationToken)
         {
             var response = new GetPropertyByIdResponse(request.CorrelationId);
             _logger.LogInformation($"Get Property By Id Request - {request.CorrelationId}");

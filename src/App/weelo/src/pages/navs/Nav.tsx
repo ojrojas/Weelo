@@ -114,8 +114,8 @@ export default function PersistentDrawerLeft(props: Props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Persistent drawer
+          <Typography variant="h4" noWrap>
+           Weelo
           </Typography>
         </Toolbar>
       </AppBar>

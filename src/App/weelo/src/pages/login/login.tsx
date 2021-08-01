@@ -1,4 +1,6 @@
 export const LoginPage =() => 
 {
-    return (<></>);
+    return (<>
+     <h1>Login</h1>
+    </>);
 }

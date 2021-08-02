@@ -17,7 +17,7 @@ namespace Weelo.Api.Endpoints.User
             _userService = userService;
         }
 
-        [HttpPost("api/update-user/{UserId}")]
+        [HttpPut("api/update-user/{UserId}")]
         [SwaggerOperation(
          Summary = "Update user in application",
          Description = "Update user",

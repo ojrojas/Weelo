@@ -27,7 +27,8 @@ namespace Weelo.Core.Services
         {
             var response = new CreateUserResponse(request.CorrelationId);
             _logger.LogInformation($"Create User Request - {request.CorrelationId}");
-            var owner = _mapper.Map<User>(request);
+            var userDto = new UserDto { Name = request.Name, LastName = request.LastName, UserName = request.UserName, Password = request.Password, CreatedBy = request.CreatedBy, CreateOn = request.CreatedOn, State = true };
+            var owner = _mapper.Map<User>(userDto);
             var result = await _asyncRepository.AddAsync(owner, cancellationToken);
             if (result == null)
                 response.Message = "Error to create user";

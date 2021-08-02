@@ -10,12 +10,31 @@ using Weelo.Core.Interfaces;
 
 namespace Weelo.Core.Services
 {
+    /// <summary>
+    /// Property Services
+    /// </summary>
+    /// <author>Oscar Julian Rojas</author>
     public class PropertyService : IPropertyService
     {
+        /// <summary>
+        /// Services WeeloDbContext
+        /// </summary>
         private readonly IAsyncRepository<Property> _asyncRepository;
+        /// <summary>
+        /// Service Mapper Property to PropertyDto
+        /// </summary>
         private readonly IMapper _mapper;
+        /// <summary>
+        /// Services Logger services serilog
+        /// </summary>
         private readonly ILogger<PropertyService> _logger;
 
+        /// <summary>
+        /// Constructor 
+        /// </summary>
+        /// <param name="asyncRepository">Service WeeloDbConext</param>
+        /// <param name="mapper">Service Mapper</param>
+        /// <param name="logger">Service logger</param>
         public PropertyService(IAsyncRepository<Property> asyncRepository, IMapper mapper, ILogger<PropertyService> logger)
         {
             _asyncRepository = asyncRepository;
@@ -23,6 +42,12 @@ namespace Weelo.Core.Services
             _logger = logger;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<CreatePropertyResponse> CreatePropertyAsync(CreatePropertyRequest request, CancellationToken cancellationToken)
         {
             var response = new CreatePropertyResponse(request.CorrelationId);

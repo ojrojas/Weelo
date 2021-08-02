@@ -5,7 +5,7 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import CardComponent from "../../components/card-component/card.component";
+import CardComponent from "../../components/card-component/card.properties.component";
 import { CardContentHomeConfiguration } from "./configurations-home";
 
 const useStyles = makeStyles((theme) => ({

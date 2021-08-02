@@ -17,7 +17,7 @@ namespace Weelo.Api.Endpoints.User
             _userService = userService;
         }
 
-        [HttpGet("api/list-user")]
+        [HttpGet("api/list-users")]
         [SwaggerOperation(
          Summary = "List users in application",
          Description = "List users",

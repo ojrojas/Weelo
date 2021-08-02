@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Weelo.Core.BaseEndpoints.User;
 using Weelo.Core.Dtos;
 using Weelo.Core.Entities;
 
@@ -22,10 +23,10 @@ namespace Weelo.Core.Mappers
                  //.ForMember(x => x.Id, map => map.MapFrom(dto => dto.Id))
                  //.ForMember(x => x.Id, map => map.MapFrom(dto => dto.Id))
 
-            CreateMap<Property, Property>();
-            CreateMap<PropertyImage, PropertyImageDto>();
-            CreateMap<PropertyTrace, PropertyTraceDto>();
-            CreateMap<User, UserDto>();
+            CreateMap<Property, PropertyDto>().ReverseMap(); ;
+            CreateMap<PropertyImage, PropertyImageDto>().ReverseMap(); ;
+            CreateMap<PropertyTrace, PropertyTraceDto>().ReverseMap(); ;
+            CreateMap<User, UserDto>().ReverseMap();
         }
     }
 }

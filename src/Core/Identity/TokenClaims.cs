@@ -30,7 +30,7 @@ namespace Weelo.Core.Identity
             foreach (PropertyInfo prop in user.GetType().GetProperties())
             {
                 _ = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
-                if (prop.Name != "USR_PASSWORD")
+                if (prop.Name != "Password")
                     if (prop.GetValue(user, null) != null)
                         claims.Add(new Claim(prop.Name, prop.GetValue(user, null).ToString()));
             }

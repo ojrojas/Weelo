@@ -15,8 +15,9 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+import { SideMenuItem } from "../../models/app/side-menu-item";
+import { Home, HomeWork, Person } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -75,7 +76,29 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
+  link: {
+    textDecoration: "none",
+    color: 'grey'
+  },
 }));
+
+export const MenusApplication: SideMenuItem[] = [
+  {
+    name: "Home",
+    icon: <Home />,
+    link: "home",
+  },
+  {
+    name: "Users",
+    icon: <Person />,
+    link: "users",
+  },
+  {
+    name: "Properties create",
+    icon: <HomeWork />,
+    link: "property-create",
+  },
+];
 
 type Props = {
   pageshow: any;
@@ -115,7 +138,7 @@ export default function PersistentDrawerLeft(props: Props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h4" noWrap>
-           Weelo
+            Weelo
           </Typography>
         </Toolbar>
       </AppBar>
@@ -139,26 +162,16 @@ export default function PersistentDrawerLeft(props: Props) {
         </div>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
+          {MenusApplication.map((menu: SideMenuItem, index: number) => (
+            <Link to={menu.link} className={classes.link} key={menu.name+"link"+index}>
+              <ListItem button key={menu.name+index}>
+                <ListItemIcon key={menu.name+"icon"+index}>{menu.icon}</ListItemIcon>
+                <ListItemText key={menu.name+"text"+index} primary={menu.name} />
+              </ListItem>
+            </Link>
           ))}
         </List>
         <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
       <main
         className={clsx(classes.content, {

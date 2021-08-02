@@ -1,0 +1,1 @@
+export const routeweelo = process.env.REACT_APP_API_WEELO;

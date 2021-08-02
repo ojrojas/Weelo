@@ -1,12 +1,13 @@
+import { User } from '../models/user.model';
 import {
     ADD_USER,
     DELETE_USER,
     ERROR_ACTIONS,
+    GET_BY_ID_USER,
     LOAD_USERS,
     UPDATE_USER,
     UserActionTypes,
 } from '../typeactions/user.typeactions';
-import { User } from '../types/user.type';
 
 export interface UserState {
     users: User[];
@@ -45,13 +46,18 @@ export const UserReducer = (
         case DELETE_USER:
             return {
                 ...state,
-                id: action.id,
+                user: action.user,
             };
         case ERROR_ACTIONS:
             return {
                 ...state,
                 error: action.error,
             };
+            case GET_BY_ID_USER:
+                return {
+                    ...state,
+                    user: action.user,
+                };
         default:
             return state;
     }

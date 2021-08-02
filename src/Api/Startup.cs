@@ -28,15 +28,22 @@ namespace Weelo.Api
             services.AddDbContext<WeeloDbContext>(c =>
            c.UseSqlite(Configuration.GetConnectionString("ConnectionSqlite")));
 
-            services.AddControllers();
-            services.AddMemoryCache();
+            services.AddDIExtensions();
+            services.AddJwtAuthentication(Configuration);
+            services.AddCorsExtension(CORS_POLICY, Configuration);
+        
+
             services.AddDistributedMemoryCache();
 
-            services.AddDIExtensions();
+         
 
-            services.AddJwtAuthentication(Configuration);
-            services.AddCorsExtension(CORS_POLICY);
+            services.AddControllers();
+
             services.AddSwaggerExtension();
+            services.AddMemoryCache();
+      
+
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

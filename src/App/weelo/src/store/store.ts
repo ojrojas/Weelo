@@ -3,7 +3,7 @@ import thunk, { ThunkMiddleware } from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { throttle } from 'lodash';
 import { rootReducer } from './root-reducer';
-import StorageService from '../services/storage.services';
+import StorageService from '../services/storage.service';
 
 /** State in localstorage * */
 const persistedState = StorageService.loadState();

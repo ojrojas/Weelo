@@ -1,4 +1,4 @@
-import StorageService from "../services/storage.services";
+import StorageService from "../services/storage.service";
 import historyRouter from "./history.router";
 
 

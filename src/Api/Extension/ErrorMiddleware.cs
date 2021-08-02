@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Weelo.Api.Helpers;
 using Weelo.Core.BaseEndpoints.Error;
 using Weelo.Core.Dtos;
 
@@ -102,7 +103,7 @@ namespace Weelo.Api.Extension
         private ErrorResponse CreateErrorResponse(Exception exception, HttpContext context, string controllerName, string actionName)
         {
             var user = context.Request.HttpContext.User.Claims.Where(x => x.Type == "Id").FirstOrDefault();
-            var body = RequestBody.ReadRquestBodyFunction(context.Request.Body);
+            var body = ReadRequestBody.ReadRquestBodyFunction(context.Request.Body);
 
             var errorResponse = new ErrorResponse
             {
@@ -114,18 +115,11 @@ namespace Weelo.Api.Extension
                     StackTrace = exception.StackTrace,
                     ErrorCode = context.Response.StatusCode,
                     RequestIp = context.Request.HttpContext.Connection?.LocalIpAddress?.ToString(),
-                    UserId = user != null ? Guid.Parse(user.Value) : Guid.Empty
+                    UserId = user != null ? Guid.Parse(user.Value) : Guid.Empty,
+                    Payload = JsonConvert.SerializeObject(body, _settings)
                 }
             };
             return errorResponse;
-        }
-    }
-
-    public class RequestBody
-    {
-        public static async Task<string> ReadRquestBodyFunction(Stream body)
-        {
-            return await new StreamReader(body).ReadToEndAsync();
         }
     }
 }

@@ -1,5 +1,5 @@
 import jwtDecode from 'jwt-decode';
-import StorageService from './storage.services';
+import StorageService from './storage.service';
 
 class AuthService {
     static isAuthenticated(): boolean {

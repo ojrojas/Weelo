@@ -11,5 +11,6 @@ namespace Weelo.Core.Dtos
         public string StackTrace { get; set; }
         public int ErrorCode { get; set; }
         public string RequestIp { get; set; }
+        public string Payload { get; set; }
     }
 }

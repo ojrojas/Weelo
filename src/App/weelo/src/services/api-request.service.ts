@@ -1,6 +1,6 @@
 import axios from "axios";
 import { routeweelo } from "../utils/baseroute.route";
-import StorageService from "./storage.services";
+import StorageService from "./storage.service";
 
 export const ApiRequest = () => {
   const apiAxios = axios.create({

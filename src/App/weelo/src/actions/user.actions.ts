@@ -17,11 +17,14 @@ const uriGetByIdUser = routeweelo + "getbyid-user/";
 const uriListUsers = routeweelo + "list-users";
 const uriUpdateUser = routeweelo + "update-user/";
 
-
-
 const request = ApiRequest();
 
 export const LoadUserSuccess = (users: User[]): AppActions => ({
+  type: LOAD_USERS,
+  users,
+});
+
+export const CreateUserSuccess = (users: User[]): AppActions => ({
   type: LOAD_USERS,
   users,
 });
@@ -66,7 +69,7 @@ async (dispatch: Dispatch<AppActions>): Promise<void> => {
   if (response.isAxiosError) {
     OnError(response);
   } else {
-    dispatch(LoadUserSuccess(response.data.userDto));
+    dispatch(CreateUserSuccess(response.data.userDto));
   }
 };
 
@@ -79,7 +82,7 @@ async (dispatch: Dispatch<AppActions>): Promise<void> => {
   if (response.isAxiosError) {
     OnError(response);
   } else {
-    dispatch(LoadUserSuccess(response.data.userDto));
+    dispatch(UpdateUserSuccess(response.data.userDto));
   }
 };
   
@@ -90,7 +93,7 @@ async (dispatch: Dispatch<AppActions>): Promise<void> => {
   if (response.isAxiosError) {
     OnError(response);
   } else {
-    dispatch(LoadUserSuccess(response.data.userDto));
+    dispatch(DeleteUserSuccess(response.data.userDto));
   }
 };
 
@@ -102,7 +105,7 @@ async (dispatch: Dispatch<AppActions>): Promise<void> => {
   if (response.isAxiosError) {
     OnError(response);
   } else {
-    dispatch(LoadUserSuccess(response.data.userDto));
+    dispatch(GetByIdUserSuccess(response.data.userDto));
   }
 };
 

@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 import { Login } from "../models/login.model";
 import { ApiRequest } from "../services/api-request.service";
-import StorageService from "../services/storage.services";
+import StorageService from "../services/storage.service";
 import { AppActions } from "../typeactions/app.typeactions";
 import {
   ERROR_ACTIONS,

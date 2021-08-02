@@ -1,11 +1,9 @@
+import React from 'react';
 import {
   Button,
-  Checkbox,
   Container,
   CssBaseline,
-  FormControlLabel,
   Grid,
-  Link,
   makeStyles,
   Paper,
   TextField,
@@ -17,6 +15,7 @@ import { User } from "../../../models/user.model";
 import { UserState } from "../../../reducer/user.reducer";
 import { AppState } from "../../../store/root-reducer";
 import { CreateUserAction } from "../../../actions/user.actions";
+import AuthService from '../../../services/auth.service';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,8 +30,8 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(2),
     display: "flex",
-    width:600,
-    padding:20,
+    width: 600,
+    padding: 20,
     flexDirection: "column",
     alignItems: "center",
   },
@@ -63,6 +62,9 @@ const UserCreatePage = (props: Props) => {
   };
 
   const onSubmit = handleSubmit((data) => {
+    const userInfo = AuthService.getUserInfo() as User;
+    data.createdBy = userInfo.createdBy;
+    data.createOn = new Date();
     onCreate(data);
   });
 
@@ -87,7 +89,7 @@ const UserCreatePage = (props: Props) => {
                   rules={{
                     required: "this field is required.",
                   }}
-                  name="userName"
+                  name="name"
                   render={({
                     field: { onChange, value },
                     fieldState: { error },
@@ -100,10 +102,10 @@ const UserCreatePage = (props: Props) => {
                       required
                       fullWidth
                       onChange={onChange}
-                      id="username"
-                      label="Username"
-                      name="username"
-                      autoComplete="username"
+                      id="name"
+                      label="Name"
+                      name="name"
+                      autoComplete="name"
                       autoFocus
                     />
                   )}
@@ -111,16 +113,16 @@ const UserCreatePage = (props: Props) => {
 
                 {errors.userName && (
                   <div className={classes.errorscolors}>
-                    input username valid
+                    input name valid
                   </div>
                 )}
 
-<Controller
+                <Controller
                   control={control}
                   rules={{
                     required: "this field is required.",
                   }}
-                  name="userName"
+                  name="lastName"
                   render={({
                     field: { onChange, value },
                     fieldState: { error },
@@ -133,10 +135,10 @@ const UserCreatePage = (props: Props) => {
                       required
                       fullWidth
                       onChange={onChange}
-                      id="username"
-                      label="Username"
-                      name="username"
-                      autoComplete="username"
+                      id="lastName"
+                      label="Last Name"
+                      name="lastName"
+                      autoComplete="lastName"
                       autoFocus
                     />
                   )}
@@ -144,7 +146,7 @@ const UserCreatePage = (props: Props) => {
 
                 {errors.userName && (
                   <div className={classes.errorscolors}>
-                    input username valid
+                    input lastname valid
                   </div>
                 )}
 
@@ -184,40 +186,7 @@ const UserCreatePage = (props: Props) => {
                 <Controller
                   control={control}
                   rules={{
-                    required: "this field is required.",
-                  }}
-                  name="userName"
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
-                    <TextField
-                      error={!!error}
-                      helperText={error ? error.message : null}
-                      variant="outlined"
-                      margin="normal"
-                      required
-                      fullWidth
-                      onChange={onChange}
-                      id="username"
-                      label="Username"
-                      name="username"
-                      autoComplete="username"
-                      autoFocus
-                    />
-                  )}
-                />
-
-                {errors.userName && (
-                  <div className={classes.errorscolors}>
-                    input username valid
-                  </div>
-                )}
-
-                <Controller
-                  control={control}
-                  rules={{
-                    required: "this field is required.",
+                    required: "this field is required."
                   }}
                   name="password"
                   render={({
@@ -232,18 +201,19 @@ const UserCreatePage = (props: Props) => {
                       required
                       fullWidth
                       onChange={onChange}
-                      name="password"
-                      label="Password"
-                      type="password"
                       id="password"
-                      autoComplete="current-password"
+                      type="password"
+                      label="Password"
+                      name="password"
+                      autoComplete="password"
+                      autoFocus
                     />
                   )}
                 />
 
                 {errors.userName && (
                   <div className={classes.errorscolors}>
-                    input your password
+                    input password valid
                   </div>
                 )}
 

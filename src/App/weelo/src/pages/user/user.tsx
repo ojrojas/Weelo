@@ -42,17 +42,17 @@ const UserPage = (props: Props) => {
   const classes = useStyles();
   ReturnLogin();
 
-  const loadData = async () => {
+  const loadData = () => {
     props.LoadUserAction();
-  };
-
-  const createFunction = () => {
-    historyRouter.push("users-create");
   };
 
   useEffect(() => {
     loadData();
-  });
+  },[]);
+
+  const createFunction = () => {
+    historyRouter.push("users-create");
+  };
 
   return (
     <div>
@@ -68,7 +68,9 @@ const UserPage = (props: Props) => {
         </Typography>
         <Grid container className={classes.root}>
           <Grid item xl={12}>
-            <Button color="secondary" onClick={() => createFunction()}>Add User</Button>
+            <Button color="secondary" onClick={() => createFunction()}>
+              Add User
+            </Button>
             <UserListPage />
           </Grid>
         </Grid>

@@ -1,14 +1,14 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import  LoginPage  from "../pages/login/login";
+import LoginPage from "../pages/login/login";
 import { LayoutPage } from "../pages/layout/layout";
 import { HomePage } from "../pages/home/home";
 import { CheckoutBasketPage } from "../checkout/checkout";
-import  UserPage  from "../pages/user/user";
-import  UserCreatePage  from "../pages/user/components/user-create";
-import { UserUpdatePage } from "../pages/user/components/user-update";
+import UserPage from "../pages/user/user";
+import UserCreatePage from "../pages/user/components/user-create";
+import  UserUpdatePage  from "../pages/user/components/user-update";
 import { UserDeletePage } from "../pages/user/components/user-delete";
-import { UserDetailPage } from "../pages/user/components/user-detail";
+import UserDetailPage from "../pages/user/components/user-detail";
 // import AuthService from "../services/auth.service";
 
 // const PrivateRoute = ({ component: Component, ...rest }: any) => (

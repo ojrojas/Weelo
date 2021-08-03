@@ -16,6 +16,7 @@ import { UserState } from "../../../reducer/user.reducer";
 import { AppState } from "../../../store/root-reducer";
 import { CreateUserAction } from "../../../actions/user.actions";
 import AuthService from '../../../services/auth.service';
+import { ReturnLogin } from '../../../utils/return-login';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const UserCreatePage = (props: Props) => {
+  ReturnLogin();
   const classes = useStyles();
   const {
     handleSubmit,
@@ -63,7 +65,7 @@ const UserCreatePage = (props: Props) => {
 
   const onSubmit = handleSubmit((data) => {
     const userInfo = AuthService.getUserInfo() as User;
-    data.createdBy = userInfo.createdBy;
+    data.createdBy = userInfo.id;
     data.createOn = new Date();
     onCreate(data);
   });
@@ -78,7 +80,7 @@ const UserCreatePage = (props: Props) => {
           component="h1"
           style={{ backgroundColor: "whitesmoke" }}
         >
-          Users
+          Users Create
         </Typography>
         <Grid container className={classes.root}>
           <Grid item xl={12}>

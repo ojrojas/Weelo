@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { User } from "../../../models/user.model";
 import { Button } from "@material-ui/core";
 import historyRouter from "../../../utils/history.router";
+import { ReturnLogin } from "../../../utils/return-login";
 
 const useStyles = makeStyles({
   table: {
@@ -21,18 +22,19 @@ const useStyles = makeStyles({
 });
 
 const UserListPage = (props: Props) => {
+  ReturnLogin();
   const classes = useStyles();
 
-  const updateFunction = (userId: string): void => {
-    historyRouter.push("users-update", { state: userId });
+  const updateFunction = (user: User): void => {
+    historyRouter.push("users-update", { user: user });
   };
 
-  const detailFunction = (userId: string): void => {
-    historyRouter.push("users-getbyid", { state: userId });
+  const detailFunction = (user: User): void => {
+    historyRouter.push("users-getbyid", { user: user });
   };
 
-  const deleteFunction = (userId: string): void => {
-    historyRouter.push("users-delete", { state: userId });
+  const deleteFunction = (user: User): void => {
+    historyRouter.push("users-delete", { user: user });
   };
 
   return (
@@ -47,30 +49,21 @@ const UserListPage = (props: Props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.userState.users.map((user: User, index:number) => (
+          {props.userState.users.map((user: User, index: number) => (
             <TableRow key={user.name}>
               <TableCell component="th" scope="row">
-                {index+1}
+                {index + 1}
               </TableCell>
               <TableCell>{user.lastName}</TableCell>
               <TableCell>{user.lastName}</TableCell>
               <TableCell>
-                <Button
-                  color="secondary"
-                  onClick={(e) => updateFunction(user.id)}
-                >
+                <Button color="secondary" onClick={(e) => updateFunction(user)}>
                   Update
                 </Button>
-                <Button
-                  color="secondary"
-                  onClick={(e) => detailFunction(user.id)}
-                >
+                <Button color="secondary" onClick={(e) => detailFunction(user)}>
                   Detail
                 </Button>
-                <Button
-                  color="secondary"
-                  onClick={(e) => deleteFunction(user.id)}
-                >
+                <Button color="secondary" onClick={(e) => deleteFunction(user)}>
                   Delete
                 </Button>
               </TableCell>

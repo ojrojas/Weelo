@@ -54,7 +54,7 @@ const UserListPage = (props: Props) => {
               <TableCell component="th" scope="row">
                 {index + 1}
               </TableCell>
-              <TableCell>{user.lastName}</TableCell>
+              <TableCell>{user.name}</TableCell>
               <TableCell>{user.lastName}</TableCell>
               <TableCell>
                 <Button color="secondary" onClick={(e) => updateFunction(user)}>

@@ -17,7 +17,7 @@ namespace Weelo.Api.Endpoints.Owner
             _ownerService = ownerService;
         }
 
-        [HttpPut("api/update-owner/{OwnerId}")]
+        [HttpPut("api/update-owner")]
         [SwaggerOperation(
         Summary = "Update owner in application",
         Description = "Update onwer",

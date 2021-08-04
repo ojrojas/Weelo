@@ -19,6 +19,11 @@ namespace Weelo.Core.Entities
         public Owner Owner { get; set; }
         public int Calification { get; set; }
         public int Rating { get; set; }
+        public PropertyImage PropertyImage { get; set; }
+        public Guid PropertyImageId { get; set; }
+        public PropertyTrace PropertyTrace { get; set; }
+        public Guid PropertyTraceId { get; set; }
+
 
         public void UpdateProperties(string name,
                                      string address,
@@ -28,6 +33,8 @@ namespace Weelo.Core.Entities
                                      Guid ownerId,
                                      int calification,
                                      int rating,
+                                     Guid propertyImageId,
+                                     Guid propertyTraceId,
                                      Guid modifiedBy,
                                      bool state)
         {
@@ -39,7 +46,10 @@ namespace Weelo.Core.Entities
             OwnerId = ownerId;
             Calification = calification;
             Rating = rating;
+            PropertyImageId = propertyImageId;
+            PropertyTraceId = propertyTraceId;
             ModifiedBy = modifiedBy;
+            ModifiedOn = DateTime.Now;
             State = state;
         }
     }

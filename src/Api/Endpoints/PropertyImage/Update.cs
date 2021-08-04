@@ -17,7 +17,7 @@ namespace Weelo.Api.Endpoints.PropertyImage
             _propertyService = propertyService;
         }
 
-        [HttpGet("api/update-propertyimage/{PropertyImageId}")]
+        [HttpGet("api/update-propertyimage")]
         [SwaggerOperation(
         Summary = "Update property in application",
         Description = "Update property",

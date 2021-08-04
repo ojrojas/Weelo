@@ -10,7 +10,7 @@ namespace Weelo.Core.Entities
     {
         public virtual Guid Id { get; protected set; }
         public virtual Guid CreatedBy { get; set; }
-        public virtual DateTime CreateOn { get; set; }
+        public virtual DateTime CreatedOn { get; set; }
         public virtual Guid ModifiedBy { get; set; }
         public virtual DateTime ModifiedOn { get; set; }
         public virtual bool State { get; set; }

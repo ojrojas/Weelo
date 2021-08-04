@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Threading;
 using System.Threading.Tasks;
-using Weelo.Core.BaseEndpoints.Property;
 using Weelo.Core.BaseEndpoints.PropertyTrace;
 using Weelo.Core.Interfaces;
 
@@ -18,7 +17,7 @@ namespace Weelo.Api.Endpoints.PropertyTrace
             _propertyService = propertyService;
         }
 
-        [HttpGet("api/update-propertytrace/{PropertyTraceId}")]
+        [HttpGet("api/update-propertytrace")]
         [SwaggerOperation(
         Summary = "Update property trace in application",
         Description = "Update property trace",

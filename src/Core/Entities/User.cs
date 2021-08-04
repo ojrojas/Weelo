@@ -10,7 +10,7 @@ namespace Weelo.Core.Entities
         public string UserName { get; set; }
         public string Password { get; set; }
 
-        public void UpdateProperties(string name, string lastName, string userName, string password, Guid modifiedBy, bool state)
+        public void UpdateProperties(string name, string lastName, string userName, string password, Guid modifiedBy,Guid createdBy,DateTime createdOn, bool state)
         {
             Name = name;
             LastName = lastName;
@@ -18,6 +18,8 @@ namespace Weelo.Core.Entities
             Password = password;
             ModifiedBy = modifiedBy;
             ModifiedOn = DateTime.Now;
+            CreatedBy= createdBy;
+            CreatedOn = createdOn;
             State = state;
         }
     }

@@ -66,19 +66,21 @@ namespace Weelo.Core.Services
         {
             var response = new UpdatePropertyResponse(request.CorrelationId);
             _logger.LogInformation($"Update Property Request - {request.CorrelationId}");
-            var propertyToUpdate = await _asyncRepository.GetByIdAsync(request.PropertyId, cancellationToken);
+            var propertyToUpdate = await _asyncRepository.GetByIdAsync(request.Id, cancellationToken);
 
             propertyToUpdate.UpdateProperties(
-                name: request.PropertyDto.Name,
-                address: request.PropertyDto.Address,
-                price: request.PropertyDto.Price,
-                codeInternal: request.PropertyDto.CodeInternal,
-                year: request.PropertyDto.Year,
-                ownerId: request.PropertyDto.OwnerId,
-                calification: request.PropertyDto.Calification,
-                rating: request.PropertyDto.Rating,
-                modifiedBy: request.PropertyDto.ModifiedBy,
-                state: request.PropertyDto.State);
+                name: request.Name,
+                address: request.Address,
+                price: request.Price,
+                codeInternal: request.CodeInternal,
+                year: request.Year,
+                ownerId: request.OwnerId,
+                calification: request.Calification,
+                rating: request.Rating,
+                propertyImageId: request.PropertyImageId,
+                propertyTraceId: request.PropertyTraceId,
+                modifiedBy: request.ModifiedBy,
+                state: request.State);
 
             var result = await _asyncRepository.UpdateAsync(propertyToUpdate, cancellationToken);
             if (result == null)

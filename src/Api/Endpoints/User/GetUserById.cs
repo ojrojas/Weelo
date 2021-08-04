@@ -23,7 +23,7 @@ namespace Weelo.Api.Endpoints.User
          Description = "Get by id user",
          OperationId = "user.getbyid",
          Tags = new[] { "UserEndpoints" })]
-        public override async Task<ActionResult<GetUserByIdResponse>> HandleAsync(GetUserByIdResquest request, CancellationToken cancellationToken = default)
+        public override async Task<ActionResult<GetUserByIdResponse>> HandleAsync([FromRoute]GetUserByIdResquest request, CancellationToken cancellationToken = default)
         {
             return await _userService.GetUserByIdAsync(request, cancellationToken);
         }

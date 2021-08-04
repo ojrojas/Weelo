@@ -41,14 +41,19 @@ namespace Weelo.Core.Services
         {
             var response = new UpdatePropertyImageResponse(request.CorrelationId);
             _logger.LogInformation($"Update PropertyImage Request - {request.CorrelationId}");
-            var propertyToUpdate = await _asyncRepository.GetByIdAsync(request.PropertyImageId, cancellationToken);
+            var propertyToUpdate = await _asyncRepository.GetByIdAsync(request.Id, cancellationToken);
 
             propertyToUpdate.UpdateProperties(
-                propertyId: request.PropertyImageDto.PropertyId,
-                file: request.PropertyImageDto.File,
-                enabled: request.PropertyImageDto.Enabled,
-                modifiedBy: request.PropertyImageDto.ModifiedBy,
-                state: request.PropertyImageDto.State);
+                propertyId: request.PropertyId,
+                file: request.File,
+                enabled: request.Enabled,
+                width: request.Width,
+                height: request.Height,
+                modifiedBy: request.ModifiedBy,
+               createdBy:request.CreatedBy,
+                createdOn : request.CreatedOn,
+                state: request.State);
+            ;
 
             var result = await _asyncRepository.UpdateAsync(propertyToUpdate, cancellationToken);
             if (result == null)

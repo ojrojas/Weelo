@@ -75,6 +75,7 @@ const UserDetailPage = (props: Props) => {
               <Typography>Last Name: {user.lastName}</Typography>
               <Typography>UserName: {user.userName}</Typography>
             </Paper>
+            <br/>
             <Button color="secondary" onClick={() => goBack()}>
               Back
             </Button>

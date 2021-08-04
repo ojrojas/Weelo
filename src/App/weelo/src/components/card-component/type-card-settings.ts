@@ -2,8 +2,8 @@ export interface CardComponentConfiguration {
   cardHeader: CardHeaderComponent;
   cardMedia: CardMediaComponent;
   cardContent: string;
-   sharedFunction: () => void;
-  addFavoritesFunction: () => void;
+  sharedFunction: (id: string) => void;
+  addFavoritesFunction: (id: string) => void;
 }
 
 export interface CardHeaderComponent {
@@ -12,8 +12,8 @@ export interface CardHeaderComponent {
 }
 
 export interface CardMediaComponent {
-  title: string ;
+  title: string;
   image: string;
-  width:number | string;
-  hight:number | string;
+  width: number | string;
+  hight: number | string;
 }

@@ -10,6 +10,7 @@ import {
   UPDATE_USER,
 } from "../typeactions/user.typeactions";
 import { routeweelo } from "../utils/baseroute.route";
+import historyRouter from "../utils/history.router";
 
 const uriCreateUser = routeweelo + "create-user";
 const uriDeleteUser = routeweelo + "delete-user/";
@@ -60,52 +61,49 @@ export const LoadUserAction =
     }
   };
 
-
-  
 export const CreateUserAction =
-(user: User) =>
-async (dispatch: Dispatch<AppActions>): Promise<void> => {
-  const response = await request.Request.Post(uriCreateUser,user);
-  if (response.isAxiosError) {
-    OnError(response);
-  } else {
-    dispatch(CreateUserSuccess(response.data.userDto));
-  }
-};
+  (user: User) =>
+  async (dispatch: Dispatch<AppActions>): Promise<void> => {
+    const response = await request.Request.Post(uriCreateUser, user);
+    if (response.isAxiosError) {
+      OnError(response);
+    } else {
+      dispatch(CreateUserSuccess(response.data.userDto));
+      historyRouter.push("users");
+    }
+  };
 
-
-  
 export const UpdateUserAction =
-(user: User) =>
-async (dispatch: Dispatch<AppActions>): Promise<void> => {
-  const response = await request.Request.Put(uriUpdateUser+user.id,user);
-  if (response.isAxiosError) {
-    OnError(response);
-  } else {
-    dispatch(UpdateUserSuccess(response.data.userDto));
-  }
-};
-  
-export const DeleteUserAction =
-(userId: string) =>
-async (dispatch: Dispatch<AppActions>): Promise<void> => {
-  const response = await request.Request.Delete(uriDeleteUser+userId);
-  if (response.isAxiosError) {
-    OnError(response);
-  } else {
-    dispatch(DeleteUserSuccess(response.data.userDto));
-  }
-};
+  (user: User) =>
+  async (dispatch: Dispatch<AppActions>): Promise<void> => {
+    const response = await request.Request.Put(uriUpdateUser + user.id, user);
+    if (response.isAxiosError) {
+      OnError(response);
+    } else {
+      dispatch(UpdateUserSuccess(response.data.userDto));
+      historyRouter.push("users");
+    }
+  };
 
+export const DeleteUserAction =
+  (userId: string) =>
+  async (dispatch: Dispatch<AppActions>): Promise<void> => {
+    const response = await request.Request.Delete(uriDeleteUser + userId);
+    if (response.isAxiosError) {
+      OnError(response);
+    } else {
+      dispatch(DeleteUserSuccess(response.data.userDto));
+      historyRouter.push("users");
+    }
+  };
 
 export const GetByIdUserAction =
-(userId: string) =>
-async (dispatch: Dispatch<AppActions>): Promise<void> => {
-  const response = await request.Request.Get(uriGetByIdUser+userId);
-  if (response.isAxiosError) {
-    OnError(response);
-  } else {
-    dispatch(GetByIdUserSuccess(response.data.userDto));
-  }
-};
-
+  (userId: string) =>
+  async (dispatch: Dispatch<AppActions>): Promise<void> => {
+    const response = await request.Request.Get(uriGetByIdUser + userId);
+    if (response.isAxiosError) {
+      OnError(response);
+    } else {
+      dispatch(GetByIdUserSuccess(response.data.userDto));
+    }
+  };

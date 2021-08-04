@@ -8,7 +8,7 @@ using Weelo.Core.Interfaces;
 
 namespace Weelo.Api.Endpoints.Property
 {
-    public class List : BaseAsyncEndpoint.WithRequest<ListPropertyRequest>.WithResponse<ListPropertyResponse>
+    public class List : BaseAsyncEndpoint.WithoutRequest.WithResponse<ListPropertyResponse>
     {
         private readonly IPropertyService _propertyService;
 
@@ -17,13 +17,13 @@ namespace Weelo.Api.Endpoints.Property
             _propertyService = propertyService;
         }
 
-        [HttpGet("api/list-property/{PropertyId}")]
+        [HttpGet("api/list-property")]
         [SwaggerOperation(
         Summary = "List properties in application",
         Description = "List properties",
         OperationId = "property.list",
         Tags = new[] { "PropertyEndpoints" })]
-        public override async Task<ActionResult<ListPropertyResponse>> HandleAsync(ListPropertyRequest request, CancellationToken cancellationToken = default)
+        public override async Task<ActionResult<ListPropertyResponse>> HandleAsync(CancellationToken cancellationToken = default)
         {
             return await _propertyService.ListPropertyAsync(cancellationToken);
         }

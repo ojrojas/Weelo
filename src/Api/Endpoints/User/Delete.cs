@@ -23,7 +23,7 @@ namespace Weelo.Api.Endpoints.User
          Description = "Delete user",
          OperationId = "user.delete",
          Tags = new[] { "UserEndpoints" })]
-        public override async Task<ActionResult<DeleteUserResponse>> HandleAsync(DeleteUserRequest request,
+        public override async Task<ActionResult<DeleteUserResponse>> HandleAsync([FromRoute]DeleteUserRequest request,
                                                                                  CancellationToken cancellationToken = default)
         {
             return await _userService.DeleteUserAsync(request, cancellationToken);

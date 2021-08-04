@@ -18,5 +18,9 @@ namespace Weelo.Core.Dtos
         public Guid OwnerId { get; set; }
         public int Calification { get; set; }
         public int Rating { get; set; }
+        public PropertyImageDto PropertyImage { get; set; }
+        public Guid PropertyImageId { get; set; }
+        public PropertyTraceDto PropertyTrace { get; set; }
+        public Guid PropertyTraceId { get; set; }
     }
 }

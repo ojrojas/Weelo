@@ -16,7 +16,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { SideMenuItem } from "../../models/app/side-menu-item";
-import { Home, HomeWork, Person } from "@material-ui/icons";
+import { Home, HomeWork, Loyalty, Person } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -97,6 +97,11 @@ export const MenusApplication: SideMenuItem[] = [
     name: "Properties create",
     icon: <HomeWork />,
     link: "property-create",
+  },
+  {
+    name: "Owners",
+    icon: <Loyalty />,
+    link: "owners-create",
   },
 ];
 

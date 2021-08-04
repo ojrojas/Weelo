@@ -5,4 +5,6 @@ export interface User extends BaseEntity {
   lastName: string;
   userName: string;
   password: string;
+  modifiedBy:string;
+  modifiedOn:Date;
 }

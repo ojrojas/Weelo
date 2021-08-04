@@ -11,12 +11,14 @@ import {
 } from "@material-ui/core";
 import { Controller, useForm } from "react-hook-form";
 import { connect } from "react-redux";
-import { User } from "../../../models/user.model";
-import { UserState } from "../../../reducer/user.reducer";
 import { AppState } from "../../../store/root-reducer";
-import { UpdateUserAction } from "../../../actions/user.actions";
+import { CreatePropertyAction } from "../../../actions/property.actions";
 import AuthService from "../../../services/auth.service";
 import { ReturnLogin } from "../../../utils/return-login";
+import { PropertyState } from "../../../reducer/property.reducer";
+import { PropertyTraceState } from "../../../reducer/property-trace.reducer";
+import { PropertyImageState } from "../../../reducer/property-image.reducer";
+import { Property } from "../../../models/property.model";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,27 +52,24 @@ const useStyles = makeStyles((theme) => ({
   errorscolors: { color: "red" },
 }));
 
-const UserUpdatePage = (props: Props) => {
+const PropertyCreatePage = (props: Props) => {
   ReturnLogin();
-  const user = props.location.state.user;
   const classes = useStyles();
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<User>({
-    defaultValues:user
-  });
+  } = useForm<Property>({});
 
-  const onUpdate = (user: User) => {
-    props.UpdateUserAction(user);
+  const onCreate = (property: Property) => {
+    props.CreatePropertyAction(property);
   };
 
   const onSubmit = handleSubmit((data) => {
     const userInfo = AuthService.getUserInfo();
-    data.modifiedBy = userInfo.Id;
-    data.modifiedOn = new Date();
-    onUpdate(data);
+    data.createdBy = userInfo.Id;
+    data.createOn = new Date();
+    onCreate(data);
   });
 
   return (
@@ -83,32 +82,12 @@ const UserUpdatePage = (props: Props) => {
           component="h1"
           style={{ backgroundColor: "whitesmoke" }}
         >
-          Users Update
+          Property Create
         </Typography>
         <Grid container className={classes.root}>
           <Grid item xl={12}>
             <Paper elevation={1} className={classes.paper}>
               <form className={classes.form} noValidate onSubmit={onSubmit}>
-              <Controller
-                  control={control}
-                  rules={{
-                    required: "this field is required.",
-                  }}
-                  name="id"
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
-                    <TextField
-                      required
-                      value={value}
-                      onChange={onChange}
-                      id="id"
-                      name="id"
-                      type="hidden"
-                    />
-                  )}
-                />
                 <Controller
                   control={control}
                   rules={{
@@ -125,7 +104,6 @@ const UserUpdatePage = (props: Props) => {
                       variant="outlined"
                       margin="normal"
                       required
-                      value={value}
                       fullWidth
                       onChange={onChange}
                       id="name"
@@ -133,12 +111,11 @@ const UserUpdatePage = (props: Props) => {
                       name="name"
                       autoComplete="name"
                       autoFocus
-                      InputLabelProps={{ shrink: user.name !== undefined ? true: false }}
                     />
                   )}
                 />
 
-                {errors.userName && (
+                {errors.name && (
                   <div className={classes.errorscolors}>input name valid</div>
                 )}
 
@@ -147,7 +124,7 @@ const UserUpdatePage = (props: Props) => {
                   rules={{
                     required: "this field is required.",
                   }}
-                  name="lastName"
+                  name="address"
                   render={({
                     field: { onChange, value },
                     fieldState: { error },
@@ -160,20 +137,18 @@ const UserUpdatePage = (props: Props) => {
                       required
                       fullWidth
                       onChange={onChange}
-                      value={value}
-                      id="lastName"
-                      label="Last Name"
-                      name="lastName"
-                      autoComplete="lastName"
+                      id="address"
+                      label="Address"
+                      name="address"
+                      autoComplete="address"
                       autoFocus
-                      InputLabelProps={{ shrink: user.lastName !== undefined ? true: false }}
                     />
                   )}
                 />
 
-                {errors.userName && (
+                {errors.address && (
                   <div className={classes.errorscolors}>
-                    input lastname valid
+                    input address valid
                   </div>
                 )}
 
@@ -182,7 +157,7 @@ const UserUpdatePage = (props: Props) => {
                   rules={{
                     required: "this field is required.",
                   }}
-                  name="userName"
+                  name="price"
                   render={({
                     field: { onChange, value },
                     fieldState: { error },
@@ -195,20 +170,50 @@ const UserUpdatePage = (props: Props) => {
                       required
                       fullWidth
                       onChange={onChange}
-                      value={value}
-                      id="userName"
-                      label="Username"
-                      name="userName"
-                      autoComplete="userName"
+                      id="price"
+                      label="Price"
+                      name="price"
+                      type="number"
+                      autoComplete="price"
                       autoFocus
-                      InputLabelProps={{ shrink: user.userName !== undefined ? true: false }}
                     />
                   )}
                 />
 
-                {errors.userName && (
+                {errors.price && (
+                  <div className={classes.errorscolors}>input price valid</div>
+                )}
+
+                <Controller
+                  control={control}
+                  rules={{
+                    required: "this field is required.",
+                  }}
+                  name="codeInternal"
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <TextField
+                      error={!!error}
+                      helperText={error ? error.message : null}
+                      variant="outlined"
+                      margin="normal"
+                      required
+                      fullWidth
+                      onChange={onChange}
+                      id="codeInternal"
+                      type="number"
+                      label="codeInternal"
+                      name="codeInternal"
+                      autoFocus
+                    />
+                  )}
+                />
+
+                {errors.codeInternal && (
                   <div className={classes.errorscolors}>
-                    input username valid
+                    input code internal valid
                   </div>
                 )}
 
@@ -217,7 +222,7 @@ const UserUpdatePage = (props: Props) => {
                   rules={{
                     required: "this field is required.",
                   }}
-                  name="password"
+                  name="year"
                   render={({
                     field: { onChange, value },
                     fieldState: { error },
@@ -228,24 +233,52 @@ const UserUpdatePage = (props: Props) => {
                       variant="outlined"
                       margin="normal"
                       required
-                      value={value}
                       fullWidth
                       onChange={onChange}
-                      id="password"
-                      type="password"
-                      label="Password"
-                      name="password"
-                      autoComplete="password"
+                      id="year"
+                      type="number"
+                      label="Year"
+                      name="year"
                       autoFocus
-                      InputLabelProps={{ shrink: user.password !== undefined ? true: false }}
                     />
                   )}
                 />
 
-                {errors.userName && (
+                {errors.year && (
                   <div className={classes.errorscolors}>
-                    input password valid
+                    input code year valid
                   </div>
+                )}
+
+                <Controller
+                  control={control}
+                  rules={{
+                    required: "this field is required.",
+                  }}
+                  name="ownerId"
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <TextField
+                      select
+                      error={!!error}
+                      helperText={error ? error.message : null}
+                      variant="outlined"
+                      margin="normal"
+                      required
+                      fullWidth
+                      onChange={onChange}
+                      id="ownerId"
+                      label="Owner"
+                      name="ownerId"
+                      autoFocus
+                    />
+                  )}
+                />
+
+                {errors.ownerId && (
+                  <div className={classes.errorscolors}>input owner valid</div>
                 )}
 
                 <Button
@@ -255,7 +288,7 @@ const UserUpdatePage = (props: Props) => {
                   color="primary"
                   className={classes.submit}
                 >
-                  Update
+                  Create
                 </Button>
               </form>
             </Paper>
@@ -267,21 +300,20 @@ const UserUpdatePage = (props: Props) => {
 };
 
 const mapStateToProps = (state: AppState) => ({
-  userState: state.users,
+  propertyState: state.property,
+  propertyImageState: state.propertyImage,
+  propertyTraceState: state.propertyTrace,
 });
 
 const mapDispatchToProps = {
-  UpdateUserAction,
+  CreatePropertyAction,
 };
 
 type Props = {
-  userState: UserState;
-  UpdateUserAction: (user: User) => void;
-  location: {
-    state: {
-      user: User;
-    };
-  };
+  propertyState: PropertyState;
+  propertyImageState: PropertyImageState;
+  propertyTraceState: PropertyTraceState;
+  CreatePropertyAction: (property: Property) => void;
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserUpdatePage);
+export default connect(mapStateToProps, mapDispatchToProps)(PropertyCreatePage);

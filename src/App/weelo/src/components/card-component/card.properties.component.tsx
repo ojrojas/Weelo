@@ -75,12 +75,12 @@ export default function CardComponent(props: Props) {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton
-          onClick={addFavoritesFunction}
+          onClick={()=> addFavoritesFunction}
           aria-label="add to favorites"
         >
           <FavoriteIcon />
         </IconButton>
-        <IconButton onClick={sharedFunction} aria-label="share">
+        <IconButton onClick={() => sharedFunction} aria-label="share">
           <ShareIcon />
         </IconButton>
       </CardActions>

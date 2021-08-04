@@ -40,15 +40,15 @@ namespace Weelo.Core.Services
         {
             var response = new UpdateOwnerResponse(request.CorrelationId);
             _logger.LogInformation($"Update Owner Request - {request.CorrelationId}");
-            var ownerToUpdate = await _asyncRepository.GetByIdAsync(request.OwnerId, cancellationToken);
+            var ownerToUpdate = await _asyncRepository.GetByIdAsync(request.Id, cancellationToken);
 
             ownerToUpdate.UpdateProperties(
-                name: request.OwnerDto.Name,
-                address: request.OwnerDto.Address,
-                photo: request.OwnerDto.Photo,
-                birthday: request.OwnerDto.Birthday,
-                modifiedBy: request.OwnerDto.ModifiedBy,
-                state: request.OwnerDto.State);
+                name: request.Name,
+                address: request.Address,
+                photo: request.Photo,
+                birthday: request.Birthday,
+                modifiedBy: request.ModifiedBy,
+                state: request.State);
 
             var result = await _asyncRepository.UpdateAsync(ownerToUpdate, cancellationToken);
             if (result == null)

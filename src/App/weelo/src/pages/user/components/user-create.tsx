@@ -64,8 +64,8 @@ const UserCreatePage = (props: Props) => {
   };
 
   const onSubmit = handleSubmit((data) => {
-    const userInfo = AuthService.getUserInfo() as User;
-    data.createdBy = userInfo.id;
+    const userInfo = AuthService.getUserInfo();
+    data.createdBy = userInfo.Id;
     data.createOn = new Date();
     onCreate(data);
   });
@@ -113,7 +113,7 @@ const UserCreatePage = (props: Props) => {
                   )}
                 />
 
-                {errors.userName && (
+                {errors.name && (
                   <div className={classes.errorscolors}>
                     input name valid
                   </div>

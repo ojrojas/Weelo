@@ -27,7 +27,15 @@ namespace Weelo.Core.Services
         {
             var response = new CreateUserResponse(request.CorrelationId);
             _logger.LogInformation($"Create User Request - {request.CorrelationId}");
-            var userDto = new UserDto { Name = request.Name, LastName = request.LastName, UserName = request.UserName, Password = request.Password, CreatedBy = request.CreatedBy, CreateOn = request.CreatedOn, State = true };
+            var userDto = new UserDto { 
+                Name = request.Name,
+                LastName = request.LastName,
+                UserName = request.UserName,
+                Password = request.Password,
+                CreatedBy = request.CreatedBy,
+                CreatedOn = request.CreatedOn,
+                State = true
+            };
             var owner = _mapper.Map<User>(userDto);
             var result = await _asyncRepository.AddAsync(owner, cancellationToken);
             if (result == null)
@@ -41,15 +49,17 @@ namespace Weelo.Core.Services
         {
             var response = new UpdateUserResponse(request.CorrelationId);
             _logger.LogInformation($"Update User Request - {request.CorrelationId}");
-            var userToUpdate = await _asyncRepository.GetByIdAsync(request.UserId, cancellationToken);
+            var userToUpdate = await _asyncRepository.GetByIdAsync(request.Id, cancellationToken);
 
             userToUpdate.UpdateProperties(
-                name: request.UserDto.Name,
-                lastName: request.UserDto.LastName,
-                userName: request.UserDto.UserName,
-                password: request.UserDto.Password,
-                modifiedBy: request.UserDto.ModifiedBy,
-                state: request.UserDto.State);
+                name: request.Name,
+                lastName: request.LastName,
+                userName: request.UserName,
+                password: request.Password,
+                modifiedBy: request.ModifiedBy,
+                createdBy:request.CreatedBy,
+                createdOn:request.CreatedOn,
+                state: request.State);
 
             var result = await _asyncRepository.UpdateAsync(userToUpdate, cancellationToken);
             if (result == null)

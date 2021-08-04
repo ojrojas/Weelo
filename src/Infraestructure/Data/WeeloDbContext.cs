@@ -38,6 +38,16 @@ namespace Weelo.Infraestructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Property>()
+            .HasOne(a => a.PropertyImage)
+            .WithOne(b => b.Property)
+            .HasForeignKey<PropertyImage>(b => b.Id);
+
+            builder.Entity<Property>()
+           .HasOne(a => a.PropertyTrace)
+           .WithOne(b => b.Property)
+           .HasForeignKey<PropertyTrace>(b => b.Id);
+
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }

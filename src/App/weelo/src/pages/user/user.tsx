@@ -9,13 +9,7 @@ import {
 } from "@material-ui/core";
 import { ReturnLogin } from "../../utils/return-login";
 import { AppState } from "../../store/root-reducer";
-import {
-  LoadUserAction,
-  CreateUserAction,
-  UpdateUserAction,
-  DeleteUserAction,
-  GetByIdUserAction,
-} from "../../actions/user.actions";
+import { LoadUserAction} from "../../actions/user.actions";
 import { UserState } from "../../reducer/user.reducer";
 import { connect } from "react-redux";
 import { User } from "../../models/user.model";
@@ -85,19 +79,11 @@ const mapStateToProps = (state: AppState) => ({
 
 const mapDispatchToProps = {
   LoadUserAction,
-  CreateUserAction,
-  UpdateUserAction,
-  DeleteUserAction,
-  GetByIdUserAction,
-};
+ };
 
 type Props = {
   userState: UserState;
   LoadUserAction: () => void;
-  CreateUserAction: (user: User) => void;
-  UpdateUserAction: (user: User) => void;
-  DeleteUserAction: (userId: string) => void;
-  GetByIdUserAction: (userId: string) => void;
-};
+ };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage);

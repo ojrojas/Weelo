@@ -9,5 +9,6 @@ namespace Weelo.Core.BaseEndpoints.Owner
         public string Photo { get; set; }
         public DateTime Birthday { get; set; }
         public Guid CreatedBy { get; set; }
+        public DateTime CreatedOn { get; set; } = DateTime.Now;
     }
 }

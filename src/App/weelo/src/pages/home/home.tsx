@@ -5,13 +5,17 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import CardComponent from "../../components/card-component/card.properties.component";
-import { CardContentHomeConfiguration } from "./configurations-home";
+import { connect } from "react-redux";
+import { PropertyState } from "../../reducer/property.reducer";
+import { AppState } from "../../store/root-reducer";
+import { LoadPropertyAction } from "../../actions/property.actions";
+import PropertyListPage from "../properties/components/property-list";
+import { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    display:'inline-flex'
+    display: "inline-flex",
   },
   typographic1: {
     marginBottom: theme.spacing(1),
@@ -25,7 +29,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const HomePage = () => {
+const HomePage = (props: Props) => {
+  const { propertyState } = props;
+
+  const loadData = () => {
+    props.LoadPropertyAction();
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
   const classes = useStyles();
   return (
     <div>
@@ -37,17 +51,27 @@ export const HomePage = () => {
           component="h1"
           style={{ backgroundColor: "whitesmoke" }}
         >
-          Properties
+          Wellcome to luxuries
         </Typography>
         <Grid container className={classes.root}>
-          <CardComponent cardComponentConfiguration={CardContentHomeConfiguration} />
-          <CardComponent cardComponentConfiguration={CardContentHomeConfiguration} />
-          <CardComponent cardComponentConfiguration={CardContentHomeConfiguration} />
-          <CardComponent cardComponentConfiguration={CardContentHomeConfiguration} />
-          <CardComponent cardComponentConfiguration={CardContentHomeConfiguration} />
-          <CardComponent cardComponentConfiguration={CardContentHomeConfiguration} />
+          <PropertyListPage properties={propertyState.properties} />
         </Grid>
       </Container>
     </div>
   );
 };
+
+const mapStateToProps = (state: AppState) => ({
+  propertyState: state.property,
+});
+
+const mapDispatchToProps = {
+  LoadPropertyAction,
+};
+
+type Props = {
+  propertyState: PropertyState;
+  LoadPropertyAction: () => void;
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

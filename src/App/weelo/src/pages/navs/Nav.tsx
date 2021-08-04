@@ -101,7 +101,7 @@ export const MenusApplication: SideMenuItem[] = [
   {
     name: "Owners",
     icon: <Loyalty />,
-    link: "owners-create",
+    link: "owners",
   },
 ];
 

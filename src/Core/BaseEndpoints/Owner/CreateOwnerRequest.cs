@@ -1,4 +1,5 @@
 ﻿using System;
+using Weelo.Core.Dtos;
 
 namespace Weelo.Core.BaseEndpoints.Owner
 {
@@ -10,5 +11,6 @@ namespace Weelo.Core.BaseEndpoints.Owner
         public DateTime Birthday { get; set; }
         public Guid CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; } = DateTime.Now;
+        public string Image { get; set; }
     }
 }

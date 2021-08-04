@@ -18,6 +18,7 @@ namespace Weelo.Api.Endpoints.Owner
         }
 
         [HttpPost("api/create-owner")]
+        [RequestSizeLimit(1_000_000)]
         [SwaggerOperation(
           Summary = "Create owner in application",
           Description = "Create onwer",

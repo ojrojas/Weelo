@@ -43,7 +43,7 @@ const OwnerPage = (props: Props) => {
   }, []);
 
   const createFunction = () => {
-    historyRouter.push("users-create");
+    historyRouter.push("owners-create");
   };
 
   return (
@@ -56,7 +56,7 @@ const OwnerPage = (props: Props) => {
           component="h1"
           style={{ backgroundColor: "whitesmoke" }}
         >
-          Users
+          Owners
         </Typography>
         <Grid container className={classes.root}>
           <Grid item xl={12}>
@@ -72,7 +72,7 @@ const OwnerPage = (props: Props) => {
 };
 
 const mapStateToProps = (state: AppState) => ({
-  ownerState: state.owner,
+  ownerState: state.owners,
 });
 
 const mapDispatchToProps = {

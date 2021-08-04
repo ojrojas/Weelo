@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,10 +28,24 @@ namespace Weelo.Core.Services
         {
             var response = new CreateOwnerResponse(request.CorrelationId);
             _logger.LogInformation($"Create Owner Request - {request.CorrelationId}");
-            var owner = _mapper.Map<Owner>(request);
+            var owner = new Owner
+            {
+                Name = request.Name,
+                Address = request.Address,
+                Birthday = request.Birthday,
+                CreatedBy = request.CreatedBy,
+                CreatedOn = DateTime.Now
+            };
+
             var result = await _asyncRepository.AddAsync(owner, cancellationToken);
             if (result == null)
+            {
                 response.Message = "Error to create owner";
+            }
+            else
+            {
+                //Insert logic imageservice here!!!
+            }
 
             response.OwnerDto = _mapper.Map<OwnerDto>(result);
             return response;

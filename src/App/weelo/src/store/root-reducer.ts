@@ -12,7 +12,7 @@ export const rootReducer = combineReducers({
     property:PropertyReducer,
     propertyImage:PropertyImageReducer,
     propertyTrace:PropertyTraceReducer,
-    owner: OwnerReducer
+    owners: OwnerReducer
   
 });
 

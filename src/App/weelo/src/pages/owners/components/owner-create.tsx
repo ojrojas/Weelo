@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import {
   Button,
   Container,
@@ -17,6 +17,7 @@ import AuthService from '../../../services/auth.service';
 import { ReturnLogin } from '../../../utils/return-login';
 import { OwnerState } from '../../../reducer/owner.reducer';
 import { Owner } from '../../../models/owner.model';
+import { toImageBase64 } from '../../../services/imagehelper';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
 
 const OwnerCreatePage = (props: Props) => {
   ReturnLogin();
+  let file:any;
   const classes = useStyles();
   const {
     handleSubmit,
@@ -63,8 +65,14 @@ const OwnerCreatePage = (props: Props) => {
     props.CreateOwnerAction(owner);
   };
 
-  const onSubmit = handleSubmit((data) => {
+  const onChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
+    file = e.target.files;
+    e.preventDefault();
+  }
+
+  const onSubmit = handleSubmit(async (data) => {
     const userInfo = AuthService.getUserInfo();
+    data.image = await toImageBase64(file[0]);
     data.createdBy = userInfo.Id;
     data.createOn = new Date();
     onCreate(data);
@@ -86,6 +94,35 @@ const OwnerCreatePage = (props: Props) => {
           <Grid item xl={12}>
             <Paper elevation={1} className={classes.paper}>
               <form className={classes.form} noValidate onSubmit={onSubmit}>
+
+
+              <Controller
+                  control={control}
+                  rules={{
+                    required: "this field is required.",
+                  }}
+                  name="image"
+                  render={({
+                    field: { onChange,value },
+                    fieldState: { error },
+                  }) => (
+                    <input
+                      required
+                      onChange={e => {onChange([onChangeImage(e)])}}
+                      id="image"
+                      name="image"
+                      type="file"
+                    />
+                  )}
+                />
+
+                {errors.image && (
+                  <div className={classes.errorscolors}>
+                    input image valid
+                  </div>
+                )}
+
+
                 <Controller
                   control={control}
                   rules={{
@@ -168,6 +205,7 @@ const OwnerCreatePage = (props: Props) => {
                       variant="outlined"
                       margin="normal"
                       required
+                      type="date"
                       fullWidth
                       onChange={onChange}
                       id="birthday"
@@ -175,6 +213,7 @@ const OwnerCreatePage = (props: Props) => {
                       name="birthday"
                       autoComplete="birthday"
                       autoFocus
+                      InputLabelProps={{shrink:true}}
                     />
                   )}
                 />
@@ -204,7 +243,7 @@ const OwnerCreatePage = (props: Props) => {
 };
 
 const mapStateToProps = (state: AppState) => ({
-  ownerState: state.owner,
+  ownerState: state.owners,
 });
 
 const mapDispatchToProps = {

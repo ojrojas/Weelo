@@ -5,4 +5,5 @@ export interface Owner extends BaseEntity {
   address: string;
   photo: string;
   birthday: Date;
+  image:any;
 }

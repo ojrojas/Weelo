@@ -52,7 +52,7 @@ const OwnerListPage = (props: Props) => {
           {props.ownerState.owners.map((owner: Owner, index: number) => (
             <TableRow key={owner.name}>
               <TableCell component="th" scope="row">
-                {index + 1}
+                {<img src={owner.photo} height="50" width="50" alt="no-card-business" />}
               </TableCell>
               <TableCell>{owner.name}</TableCell>
               <TableCell>{owner.birthday}</TableCell>

@@ -4,6 +4,10 @@ using Weelo.Core.Dtos;
 
 namespace Weelo.Core.BaseEndpoints.Property
 {
+    /// <summary>
+    /// ListProperty response
+    /// </summary>
+    /// <author>Oscar Julian Rojas</author>
     public class ListPropertyResponse : BaseResponse
     {
         public ListPropertyResponse(Guid correlationId) : base(correlationId) { }

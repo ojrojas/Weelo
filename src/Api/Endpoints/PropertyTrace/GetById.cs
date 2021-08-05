@@ -8,15 +8,30 @@ using Weelo.Core.Interfaces;
 
 namespace Weelo.Api.Endpoints.PropertyTrace
 {
+    /// <summary>
+    /// Endpoint getbyid property trace
+    /// </summary>
+    /// <author>Oscar julian Rojas</author>
+    /// <date>03/08/2021</date>
     public class GetById: BaseAsyncEndpoint.WithRequest<GetByIdPropertyTraceRequest>.WithResponse<GetByIdPropertyTraceResponse>
     {
         private readonly IPropertyTraceService _propertyService;
 
+        /// <summary>
+        /// Constructor 
+        /// </summary>
+        /// <param name="propertyService">Property trace service</param>
         public GetById(IPropertyTraceService propertyService)
         {
             _propertyService = propertyService;
         }
 
+        /// <summary>
+        /// Action get by id property trace
+        /// </summary>
+        /// <param name="request">request property </param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Property requested</returns>
         [HttpPut("api/getbyid-propertyTrace/{PropertyTraceId}")]
         [SwaggerOperation(
         Summary = "Get by id property trace in application",

@@ -6,8 +6,18 @@ using System.Collections.Generic;
 
 namespace Weelo.Api.Extension
 {
+    /// <summary>
+    /// Extension swagger documentation api
+    /// </summary>
+    /// <author>Oscar Julian Rojas</author>
+    /// <date>02/08/2021</date>
     public  static class SwaggerExtensions
     {
+        /// <summary>
+        /// AddSwaggerDocumentation
+        /// </summary>
+        /// <param name="services">IServiceCollection</param>
+        /// <returns>services Swagger</returns>
         internal static IServiceCollection AddSwaggerExtension(this IServiceCollection services)
         {
             services.AddSwaggerGen(c =>
@@ -26,6 +36,8 @@ namespace Weelo.Api.Extension
                     Scheme = "Bearer"
                 });
 
+
+                /// add security requeriments
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement()
                 {
                     {
@@ -50,6 +62,11 @@ namespace Weelo.Api.Extension
         }
 
 
+        /// <summary>
+        /// UserSwagger documentation
+        /// </summary>
+        /// <param name="app">Application builder</param>
+        /// <returns>Builder documentation</returns>
         internal static  IApplicationBuilder UseSwaggerExtensions (this IApplicationBuilder app)
         {
             app.UseSwagger();

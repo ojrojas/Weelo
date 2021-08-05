@@ -36,17 +36,21 @@ namespace Weelo.Infraestructure.Data
         /// </summary>
         public DbSet<PropertyTrace> PropertyTraces { get; set; }
 
+        /// <summary>
+        /// OnModel property from property image to property trace
+        /// </summary>
+        /// <param name="builder">Builder entities realtion</param>
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Property>()
             .HasOne(a => a.PropertyImage)
             .WithOne(b => b.Property)
-            .HasForeignKey<PropertyImage>(b => b.Id);
+            .HasForeignKey<PropertyImage>(b => b.PropertyId);
 
             builder.Entity<Property>()
            .HasOne(a => a.PropertyTrace)
            .WithOne(b => b.Property)
-           .HasForeignKey<PropertyTrace>(b => b.Id);
+           .HasForeignKey<PropertyTrace>(b => b.PropertyId);
 
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

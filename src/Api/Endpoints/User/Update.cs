@@ -1,7 +1,6 @@
 ﻿using Ardalis.ApiEndpoints;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Weelo.Core.BaseEndpoints.User;
@@ -9,15 +8,28 @@ using Weelo.Core.Interfaces;
 
 namespace Weelo.Api.Endpoints.User
 {
+    /// <summary>
+    /// Endpoint update user
+    /// </summary>
     public class Update : BaseAsyncEndpoint.WithRequest<UpdateUserRequest>.WithResponse<UpdateUserResponse>
     {
         private readonly IUserService _userService;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="userService">User services</param>
         public Update(IUserService userService)
         {
             _userService = userService;
         }
 
+        /// <summary>
+        /// Action update user
+        /// </summary>
+        /// <param name="request">Request users</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>Updated user</returns>
         [HttpPut("api/update-user/{UserId}")]
         [SwaggerOperation(
          Summary = "Update user in application",

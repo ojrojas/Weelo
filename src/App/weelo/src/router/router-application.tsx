@@ -10,11 +10,11 @@ import UserUpdatePage from "../pages/user/components/user-update";
 import UserDeletePage from "../pages/user/components/user-delete";
 import UserDetailPage from "../pages/user/components/user-detail";
 import PropertyCreatePage from "../pages/properties/components/property-create";
-import OwnerPage from '../pages/owners/owners';
-import { OwnerUpdatePage } from "../pages/owners/components/owner-update";
-import { OwnerDeletePage } from "../pages/owners/components/owner-delete";
-import { OwnerGetByIdPage } from "../pages/owners/components/owner-get";
-import OwnerCreatePage from '../pages/owners/components/owner-create';
+import OwnerPage from "../pages/owners/owners";
+import OwnerUpdatePage from "../pages/owners/components/owner-update";
+import OwnerDeletePage from "../pages/owners/components/owner-delete";
+import OwnerGetByIdPage from "../pages/owners/components/owner-get";
+import OwnerCreatePage from "../pages/owners/components/owner-create";
 // import AuthService from "../services/auth.service";
 
 // const PrivateRoute = ({ component: Component, ...rest }: any) => (

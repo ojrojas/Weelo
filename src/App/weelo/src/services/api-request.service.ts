@@ -8,7 +8,7 @@ export const ApiRequest = () => {
     headers: {
       "Cache-Control": "no-cache",
     },
-    timeout: 15000,
+    //timeout: 15000,
   });
 
   apiAxios.interceptors.request.use(async (config) => {

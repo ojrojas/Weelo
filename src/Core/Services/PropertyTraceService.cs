@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,7 +28,16 @@ namespace Weelo.Core.Services
         {
             var response = new CreatePropertyTraceResponse(request.CorrelationId);
             _logger.LogInformation($"Create PropertyTrace Request - {request.CorrelationId}");
-            var property = _mapper.Map<PropertyTrace>(request);
+            var property = new PropertyTrace
+            {
+                Name = request.Name,
+                State = true,
+                PropertyId = request.PropertyId,
+                Tax = request.Tax,
+                Value = request.Value,
+                CreatedBy = request.CreatedBy, 
+                CreatedOn = DateTime.Now
+            };
             var result = await _asyncRepository.AddAsync(property, cancellationToken);
             if (result == null)
                 response.Message = "Error to create property trace";
@@ -41,16 +51,16 @@ namespace Weelo.Core.Services
         {
             var response = new UpdatePropertyTraceResponse(request.CorrelationId);
             _logger.LogInformation($"Update PropertyTrace Request - {request.CorrelationId}");
-            var propertyToUpdate = await _asyncRepository.GetByIdAsync(request.PropertyTraceId, cancellationToken);
+            var propertyToUpdate = await _asyncRepository.GetByIdAsync(request.Id, cancellationToken);
 
             propertyToUpdate.UpdateProperties(
-                propertyId: request.PropertyTraceDto.PropertyId,
-                dateSale: request.PropertyTraceDto.DateSale,
-                name: request.PropertyTraceDto.Name,
-                value: request.PropertyTraceDto.Value,
-                tax: request.PropertyTraceDto.Tax,
-                modifiedBy: request.PropertyTraceDto.ModifiedBy,
-                state: request.PropertyTraceDto.State);
+                propertyId: request.PropertyId,
+                dateSale: request.DateSale,
+                name: request.Name,
+                value: request.Value,
+                tax: request.Tax,
+                modifiedBy: request.ModifiedBy,
+                state: request.State);
 
             var result = await _asyncRepository.UpdateAsync(propertyToUpdate, cancellationToken);
             if (result == null)

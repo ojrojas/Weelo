@@ -8,15 +8,30 @@ using Weelo.Core.Interfaces;
 
 namespace Weelo.Api.Endpoints.PropertyImage
 {
+    /// <summary>
+    /// Endpoint delete property image
+    /// </summary>
+    /// <author>Oscar Julian Rojas</author>
+    /// <date>04/08/2021</date>
     public class Delete : BaseAsyncEndpoint.WithRequest<DeletePropertyImageRequest>.WithResponse<DeletePropertyImageResponse>
     {
         private readonly IPropertyImageService _PropertyImageService;
 
+        /// <summary>
+        /// Constructor Property image
+        /// </summary>
+        /// <param name="PropertyImageService">Property imageservices</param>
         public Delete(IPropertyImageService PropertyImageService)
         {
             _PropertyImageService = PropertyImageService;
         }
 
+        /// <summary>
+        /// Action delete property image
+        /// </summary>
+        /// <param name="request">request property image</param>
+        /// <param name="cancellationToken">Cancellation on fail</param>
+        /// <returns>Deleted property image</returns>
         [HttpGet("api/delete-propertyimage/{PropertyImageId}")]
         [SwaggerOperation(
          Summary = "Delete PropertyImage in application",

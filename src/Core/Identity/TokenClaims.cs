@@ -12,15 +12,28 @@ using Weelo.Core.Interfaces;
 
 namespace Weelo.Core.Identity
 {
+    /// <summary>
+    /// Token claim Services
+    /// </summary>
+    /// <author>Oscar Julian Rojas</author>
     public class TokenClaims : ITokenClaims
     {
         private readonly IConfiguration _configuration;
 
+        /// <summary>
+        /// Constructor 
+        /// </summary>
+        /// <param name="configuration">Configuration application</param>
         public TokenClaims(IConfiguration configuration)
         {
             _configuration = configuration;
         }
-
+    
+        /// <summary>
+        /// Get Token jwt
+        /// </summary>
+        /// <param name="user">User login application</param>
+        /// <returns>jwt string token</returns>
         public async Task<string> GetTokenAsync(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();

@@ -3,6 +3,7 @@ import { User } from "../models/user.model";
 import { ApiRequest } from "../services/api-request.service";
 import { AppActions } from "../typeactions/app.typeactions";
 import {
+  ADD_USER,
   DELETE_USER,
   ERROR_ACTIONS,
   GET_BY_ID_USER,
@@ -25,9 +26,9 @@ export const LoadUserSuccess = (users: User[]): AppActions => ({
   users,
 });
 
-export const CreateUserSuccess = (users: User[]): AppActions => ({
-  type: LOAD_USERS,
-  users,
+export const CreateUserSuccess = (user: User): AppActions => ({
+  type: ADD_USER,
+  user,
 });
 
 export const UpdateUserSuccess = (user: User): AppActions => ({
@@ -69,7 +70,7 @@ export const CreateUserAction =
       OnError(response);
     } else {
       dispatch(CreateUserSuccess(response.data.userDto));
-      historyRouter.push("users");
+      historyRouter.goBack();
     }
   };
 
@@ -81,7 +82,7 @@ export const UpdateUserAction =
       OnError(response);
     } else {
       dispatch(UpdateUserSuccess(response.data.userDto));
-      historyRouter.push("users");
+      historyRouter.goBack();
     }
   };
 
@@ -93,7 +94,7 @@ export const DeleteUserAction =
       OnError(response);
     } else {
       dispatch(DeleteUserSuccess(response.data.userDto));
-      historyRouter.push("users");
+      historyRouter.goBack();
     }
   };
 

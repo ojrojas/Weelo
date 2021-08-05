@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Weelo.Infraestructure.Data;
 
 namespace Weelo.Infraestructure.Data.Migrations
 {
     [DbContext(typeof(WeeloDbContext))]
-    partial class WeeloDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210804202726_PropertyImageFix")]
+    partial class PropertyImageFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

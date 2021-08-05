@@ -10,12 +10,23 @@ using Weelo.Core.Interfaces;
 
 namespace Weelo.Core.Services
 {
+    /// <summary>
+    /// User services
+    /// </summary>
+    /// <auhtor>Oscar Julian Rojas</auhtor>
+    /// <date>29/08/2021</date>
     public class UserService : IUserService
     {
         private readonly IAsyncRepository<User> _asyncRepository;
         private readonly ILogger<UserService> _logger;
         private readonly IMapper _mapper;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="asyncRepository">reporsitory generic</param>
+        /// <param name="logger">logger application</param>
+        /// <param name="mapper">mappers entitiens</param>
         public UserService(IAsyncRepository<User> asyncRepository, ILogger<UserService> logger, IMapper mapper)
         {
             _asyncRepository = asyncRepository;
@@ -23,6 +34,12 @@ namespace Weelo.Core.Services
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Create user
+        /// </summary>
+        /// <param name="request">user request</param>
+        /// <param name="cancellationToken">cancellation event</param>
+        /// <returns>User created</returns>
         public async Task<CreateUserResponse> CreateUserAsync(CreateUserRequest request, CancellationToken cancellationToken)
         {
             var response = new CreateUserResponse(request.CorrelationId);
@@ -45,6 +62,12 @@ namespace Weelo.Core.Services
             return response;
         }
 
+        /// <summary>
+        /// Update user
+        /// </summary>
+        /// <param name="request">request user</param>
+        /// <param name="cancellationToken">cancellation event</param>
+        /// <returns>User Updated</returns>
         public async Task<UpdateUserResponse> UpdateUserAsync(UpdateUserRequest request, CancellationToken cancellationToken)
         {
             var response = new UpdateUserResponse(request.CorrelationId);
@@ -69,7 +92,12 @@ namespace Weelo.Core.Services
             return response;
         }
 
-
+        /// <summary>
+        /// Delete user 
+        /// </summary>
+        /// <param name="request">Delete user request</param>
+        /// <param name="cancellationToken">cancellation event</param>
+        /// <returns>Deleted User</returns>
         public async Task<DeleteUserResponse> DeleteUserAsync(DeleteUserRequest request, CancellationToken cancellationToken)
         {
             var response = new DeleteUserResponse(request.CorrelationId);
@@ -84,6 +112,12 @@ namespace Weelo.Core.Services
             return response;
         }
 
+        /// <summary>
+        /// Get by id user
+        /// </summary>
+        /// <param name="request">User request</param>
+        /// <param name="cancellationToken">cancellation event</param>
+        /// <returns>User search</returns>
         public async Task<GetUserByIdResponse> GetUserByIdAsync(GetUserByIdResquest request, CancellationToken cancellationToken)
         {
             var response = new GetUserByIdResponse(request.CorrelationId);
@@ -96,6 +130,11 @@ namespace Weelo.Core.Services
             return response;
         }
 
+        /// <summary>
+        /// List users application
+        /// </summary>
+        /// <param name="cancellationToken">cancellation event</param>
+        /// <returns>Listed users</returns>
         public async Task<ListUserResponse> ListUserAsync(CancellationToken cancellationToken)
         {
             var response = new ListUserResponse();

@@ -12,6 +12,7 @@ import { AppState } from "../../store/root-reducer";
 import historyRouter from "../../utils/history.router";
 import { ReturnLogin } from "../../utils/return-login";
 import { ListOwnerAction } from "../../actions/owner.actions";
+import OwnerListPage from './components/owner-list';
 import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
@@ -63,7 +64,7 @@ const OwnerPage = (props: Props) => {
             <Button color="secondary" onClick={() => createFunction()}>
               Add User
             </Button>
-            {/* <UserListPage /> */}
+            <OwnerListPage />
           </Grid>
         </Grid>
       </Container>

@@ -64,7 +64,7 @@ export default function CardComponent(props: Props) {
         subheader={cardHeader.subheader}
       />
       <CardMedia
-        style={{ height: cardMedia.hight, width: cardMedia.width, paddingTop: '56.25%' }}
+        style={{ height: '200', width: '100%', paddingTop: '56.25%' }}
         image={cardMedia.image}
         title={cardMedia.title}
       />

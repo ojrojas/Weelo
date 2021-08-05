@@ -3,6 +3,11 @@ using Weelo.Core.Interfaces;
 
 namespace Weelo.Core.Entities
 {
+    /// <summary>
+    /// User Entity model
+    /// </summary>
+    /// <author>Oscar Julian Rojas</author>
+    /// <date>29/08/2021</date>
     public class User : BaseEntity, IAggregateRoot
     {
         public string Name { get; set; }

@@ -2,6 +2,10 @@
 
 namespace Weelo.Core.BaseEndpoints.PropertyTrace
 {
+    /// <summary>
+    /// Create property trace
+    /// </summary>
+    /// <author>Oscar Julian Rojas</author>
     public class CreatePropertyTraceRequest: BaseRequest
     {
         public Guid PropertyId { get; set; }

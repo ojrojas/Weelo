@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Weelo.Core.Dtos;
 
 namespace Weelo.Core.BaseEndpoints.Property
 {
+    /// <summary>
+    /// Get property by id response
+    /// </summary>
+    /// <author>Oscar Julian Rojas</author>
     public class GetPropertyByIdResponse : BaseResponse
     {
         public GetPropertyByIdResponse(Guid correlationId) : base(correlationId) { }

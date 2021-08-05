@@ -9,9 +9,22 @@ using Weelo.Infraestructure.Data;
 
 namespace Weelo.Api
 {
+    /// <summary>
+    /// Startup application 
+    /// </summary>
+    /// <author>Oscar Julian Rojas</author>
+    /// <date>29/08/2021</date>
     public class Startup
     {
+        /// <summary>
+        /// Cors configuration
+        /// </summary>
         private const string CORS_POLICY = "WeeloCors";
+
+        /// <summary>
+        /// Startup application 
+        /// </summary>
+        /// <param name="configuration">Configuration application</param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -19,34 +32,41 @@ namespace Weelo.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// Configuration srevices application
+        /// </summary>
+        /// <param name="services">IServiceCollection</param>
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddDbContext<WeeloDbContext>(c =>
             //c.UseSqlServer(Configuration.GetConnectionString("Connection")));
 
+            /// db configuration
             services.AddDbContext<WeeloDbContext>(c =>
            c.UseSqlite(Configuration.GetConnectionString("ConnectionSqlite")));
 
+            // configuration DI
             services.AddDIExtensions();
+            // Configuration Jwt
             services.AddJwtAuthentication(Configuration);
+            // Configuration cors
             services.AddCorsExtension(CORS_POLICY, Configuration);
-        
-
+            // configuration memory
             services.AddDistributedMemoryCache();
-
-         
 
             services.AddControllers();
 
+            // Configuration swagger extension
             services.AddSwaggerExtension();
-            services.AddMemoryCache();
-      
 
-          
+            services.AddMemoryCache();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// Builder application 
+        /// </summary>
+        /// <param name="app">Application builder</param>
+        /// <param name="env">Environment configuration</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -54,6 +74,7 @@ namespace Weelo.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            //configuration Errormiddleware
             app.UseMiddleware<ErrorMiddleware>();
 
             app.UseHttpsRedirection();
@@ -62,6 +83,7 @@ namespace Weelo.Api
 
             app.UseRouting();
 
+            /// configuration cors policity
             app.UseCors(CORS_POLICY);
 
             app.UseAuthorization();

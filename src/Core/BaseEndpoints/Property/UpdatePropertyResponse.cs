@@ -3,6 +3,10 @@ using Weelo.Core.Dtos;
 
 namespace Weelo.Core.BaseEndpoints.Property
 {
+    /// <summary>
+    /// Update property response
+    /// </summary>
+    /// <author>Oscar Julian Rojas</author>
     public class UpdatePropertyResponse: BaseResponse
     {
         public UpdatePropertyResponse(Guid correlationId) : base(correlationId) { }

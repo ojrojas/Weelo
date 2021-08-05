@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Weelo.Core.BaseEndpoints.Property;
+using Weelo.Core.BaseEndpoints.PropertyImage;
+using Weelo.Core.BaseEndpoints.PropertyTrace;
 using Weelo.Core.Dtos;
 using Weelo.Core.Entities;
 using Weelo.Core.Interfaces;
@@ -29,44 +32,122 @@ namespace Weelo.Core.Services
         /// </summary>
         private readonly ILogger<PropertyService> _logger;
 
+        private readonly IPropertyImageService _propertyImageService;
+        private readonly IPropertyTraceService _propertyTraceService;
+
+
         /// <summary>
-        /// Constructor 
+        /// Constructor
         /// </summary>
-        /// <param name="asyncRepository">Service WeeloDbConext</param>
-        /// <param name="mapper">Service Mapper</param>
-        /// <param name="logger">Service logger</param>
-        public PropertyService(IAsyncRepository<Property> asyncRepository, IMapper mapper, ILogger<PropertyService> logger)
+        /// <param name="asyncRepository">repository entity property</param>
+        /// <param name="mapper">mappers</param>
+        /// <param name="logger">log application</param>
+        /// <param name="propertyImageService">services imageproperty</param>
+        /// <param name="propertyTraceService">services traceproperty</param>
+        public PropertyService(IAsyncRepository<Property> asyncRepository,
+                               IMapper mapper,
+                               ILogger<PropertyService> logger,
+                               IPropertyImageService propertyImageService,
+                               IPropertyTraceService propertyTraceService)
         {
             _asyncRepository = asyncRepository;
             _mapper = mapper;
             _logger = logger;
+            _propertyImageService = propertyImageService;
+            _propertyTraceService = propertyTraceService;
         }
 
         /// <summary>
-        /// 
+        /// Create property 
         /// </summary>
-        /// <param name="request"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
+        /// <param name="request">request property </param>
+        /// <param name="cancellationToken">cancellation event</param>
+        /// <returns>property created</returns>
         public async Task<CreatePropertyResponse> CreatePropertyAsync(CreatePropertyRequest request, CancellationToken cancellationToken)
         {
             var response = new CreatePropertyResponse(request.CorrelationId);
             _logger.LogInformation($"Create Property Request - {request.CorrelationId}");
-            var property = _mapper.Map<Property>(request);
+            var property = new Property
+            {
+                Name = request.Name,
+                Address = request.Address,
+                Price = request.Price,
+                CodeInternal = request.CodeInternal,
+                Year = request.Year,
+                OwnerId = request.OwnerId,
+            };
+
+            property.PropertyImage = new PropertyImage
+            {
+                File = request.PropertyImage.File,
+                PropertyId = property.Id,
+                Enabled = !string.IsNullOrEmpty(request.PropertyImage.File),
+                CreatedBy = request.CreatedBy,
+                CreatedOn = DateTime.Now
+            };
+
+            property.PropertyTrace = new PropertyTrace
+            {
+                Name = request.PropertyTrace.Name,
+                DateSale = request.PropertyTrace.DateSale,
+                Value = request.PropertyTrace.Value,
+                Tax = request.PropertyTrace.Tax,
+                CreatedBy = request.CreatedBy,
+                PropertyId = property.Id,
+                CreatedOn = DateTime.Now
+            };
+
+
             var result = await _asyncRepository.AddAsync(property, cancellationToken);
             if (result == null)
+            {
                 response.Message = "Error to create property";
+            }
+            else
+            {
+                property.PropertyImageId = property.PropertyImage.Id;
+                property.PropertyTraceId= property.PropertyTrace.Id;
+
+                await _asyncRepository.UpdateAsync(property);
+            }
 
             response.PropertyDto = _mapper.Map<PropertyDto>(result);
             return response;
         }
 
 
+        /// <summary>
+        /// Update property
+        /// </summary>
+        /// <param name="request">request property</param>
+        /// <param name="cancellationToken">cancellation event</param>
+        /// <returns>property updated</returns>
         public async Task<UpdatePropertyResponse> UpdatePropertyAsync(UpdatePropertyRequest request, CancellationToken cancellationToken)
         {
             var response = new UpdatePropertyResponse(request.CorrelationId);
             _logger.LogInformation($"Update Property Request - {request.CorrelationId}");
             var propertyToUpdate = await _asyncRepository.GetByIdAsync(request.Id, cancellationToken);
+
+            var propertyImage = new UpdatePropertyImageRequest
+            {
+                File = request.PropertyImage.File,
+                PropertyId = request.Id,
+                Enabled = !string.IsNullOrEmpty(request.PropertyImage.File),
+                ModifiedBy = request.ModifiedBy,
+                ModifiedOn = DateTime.Now,
+                Width = request.PropertyImage.Width,
+                Height = request.PropertyImage.Height
+            };
+
+            var propertyTrace = new UpdatePropertyTraceRequest
+            {
+                Name = request.PropertyTrace.Name,
+                DateSale = request.PropertyTrace.DateSale,
+                Value = request.PropertyTrace.Value,
+                Tax = request.PropertyTrace.Tax,
+                ModifiedBy = request.ModifiedBy,
+                ModifiedOn = DateTime.Now
+            };
 
             propertyToUpdate.UpdateProperties(
                 name: request.Name,
@@ -84,12 +165,25 @@ namespace Weelo.Core.Services
 
             var result = await _asyncRepository.UpdateAsync(propertyToUpdate, cancellationToken);
             if (result == null)
+            {
                 response.Message = "Error to update property";
+            }
+            else
+            {
+                await _propertyImageService.UpdatePropertyImageAsync(propertyImage, cancellationToken);
+                await _propertyTraceService.UpdatePropertyTraceAsync(propertyTrace, cancellationToken);
+            }
 
             response.PropertyDto = _mapper.Map<PropertyDto>(result);
             return response;
         }
 
+        /// <summary>
+        /// Delete property 
+        /// </summary>
+        /// <param name="request">request delete</param>
+        /// <param name="cancellationToken">cancellation event</param>
+        /// <returns>property delete</returns>
         public async Task<DeletePropertyResponse> DeletePropertyAsync(DeletePropertyRequest request, CancellationToken cancellationToken)
         {
             var response = new DeletePropertyResponse(request.CorrelationId);
@@ -104,6 +198,12 @@ namespace Weelo.Core.Services
             return response;
         }
 
+        /// <summary>
+        /// Get property by id
+        /// </summary>
+        /// <param name="request">property request</param>
+        /// <param name="cancellationToken">cancellation event</param>
+        /// <returns>property</returns>
         public async Task<GetPropertyByIdResponse> GetPropertyByIdAsync(GetByIdProertyRequest request, CancellationToken cancellationToken)
         {
             var response = new GetPropertyByIdResponse(request.CorrelationId);
@@ -116,15 +216,32 @@ namespace Weelo.Core.Services
             return response;
         }
 
+        /// <summary>
+        /// List properties
+        /// </summary>
+        /// <param name="cancellationToken">cancellation event</param>
+        /// <returns>properties listed</returns>
         public async Task<ListPropertyResponse> ListPropertyAsync(CancellationToken cancellationToken)
         {
             var response = new ListPropertyResponse();
             _logger.LogInformation($"List Property Request - Get");
-            var result = await _asyncRepository.ListAllAsync(cancellationToken);
-            if (result == null)
+            var results = await _asyncRepository.ListAllAsync(cancellationToken);
+            if (results == null)
                 response.Message = "Error to get properties";
-            if (result.Any())
-                response.Properties.AddRange(result.Select(_mapper.Map<PropertyDto>));
+            
+            if (results.Any())
+                response.Properties.AddRange(results.Select(_mapper.Map<PropertyDto>));
+
+            foreach (var i in response.Properties)
+            {
+                var propertyTrace = await _propertyTraceService.GetByIdPropertyTraceAsync(
+                    new GetByIdPropertyTraceRequest { PropertyTraceId = i.PropertyTraceId }, cancellationToken);
+                i.PropertyTrace = propertyTrace.PropertyTraceDto;
+
+                var propertyImage = await _propertyImageService.GetPropertyImageByIdAsync(
+                   new GetByIdProertyImageRequest { PropertyImageId = i.PropertyImageId}, cancellationToken);
+                i.PropertyImage = propertyImage.PropertyImageDto;
+            }
 
             return response;
         }

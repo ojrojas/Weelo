@@ -14,6 +14,11 @@ using Weelo.Core.Dtos;
 
 namespace Weelo.Api.Extension
 {
+    /// <summary>
+    /// Errormiddleware for resilence application
+    /// </summary>
+    /// <author>Oscar Julian Rojas</author>
+    /// <date>02/08/2021</date>
     public class ErrorMiddleware
     {
         private readonly RequestDelegate _next;
@@ -42,7 +47,7 @@ namespace Weelo.Api.Extension
         /// Invoke ErrorValidation
         /// </summary>
         /// <param name="context"></param>
-        /// <returns></returns>
+        /// <returns>Invoke context http</returns>
         public async Task Invoke(HttpContext context)
         {
             try

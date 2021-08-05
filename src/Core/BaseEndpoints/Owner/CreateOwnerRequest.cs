@@ -1,8 +1,12 @@
 ﻿using System;
-using Weelo.Core.Dtos;
 
 namespace Weelo.Core.BaseEndpoints.Owner
 {
+    /// <summary>
+    /// Create owner resquest
+    /// </summary>
+    /// <author>OScar Julian Rojas</author>
+    /// <date>29/08/2021</date>
     public class CreateOwnerRequest: BaseRequest
     {
         public string Name { get; set; }

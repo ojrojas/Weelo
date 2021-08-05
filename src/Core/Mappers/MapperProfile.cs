@@ -16,12 +16,7 @@ namespace Weelo.Core.Mappers
         {
             CreateMap<Owner, OwnerDto>();
                  //.ForMember(x => x.Id, map => map.MapFrom(dto => dto.Id))
-                 //.ForMember(x => x.Id, map => map.MapFrom(dto => dto.Id))
-                 //.ForMember(x => x.Id, map => map.MapFrom(dto => dto.Id))
-                 //.ForMember(x => x.Id, map => map.MapFrom(dto => dto.Id))
-                 //.ForMember(x => x.Id, map => map.MapFrom(dto => dto.Id))
-                 //.ForMember(x => x.Id, map => map.MapFrom(dto => dto.Id))
-                 //.ForMember(x => x.Id, map => map.MapFrom(dto => dto.Id))
+           
 
             CreateMap<Property, PropertyDto>().ReverseMap(); ;
             CreateMap<PropertyImage, PropertyImageDto>().ReverseMap(); ;

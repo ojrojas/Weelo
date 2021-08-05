@@ -16,3 +16,4 @@ export interface Property extends BaseEntity {
   PropertyImageId: string;
   PropertyTraceId: string;
 }
+

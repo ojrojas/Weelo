@@ -2,6 +2,10 @@
 
 namespace Weelo.Core.Dtos
 {
+    /// <summary>
+    /// User Dto entity
+    /// </summary>
+    /// <author>Oscar Julian Rojas</author>
     public class UserDto: BaseEntity
     {
         public string Name { get; set; }

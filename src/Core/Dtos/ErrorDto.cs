@@ -2,6 +2,10 @@
 
 namespace Weelo.Core.Dtos
 {
+    /// <summary>
+    /// Error Dto
+    /// </summary>
+    /// <author>Oscar Julian Rojas</author>
     public class ErrorDto
     {
         public string Message { get; set; }

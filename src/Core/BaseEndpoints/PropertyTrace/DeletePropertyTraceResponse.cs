@@ -3,6 +3,10 @@ using Weelo.Core.Dtos;
 
 namespace Weelo.Core.BaseEndpoints.PropertyTrace
 {
+    /// <summary>
+    /// Delete property trace response
+    /// </summary>
+    /// <author>Oscar Julian Rojas</author>
     public class DeletePropertyTraceResponse : BaseResponse
     {
         public DeletePropertyTraceResponse(Guid correlationId) : base(correlationId) { }

@@ -11,6 +11,7 @@ import {
   UPDATE_PROPERTY,
 } from "../typeactions/property.typeactions";
 import { routeweelo } from "../utils/baseroute.route";
+import historyRouter from "../utils/history.router";
 
 const request = ApiRequest();
 const getPropertyAll = routeweelo + "list-property";
@@ -68,6 +69,7 @@ export const CreatePropertyAction =
       dispacth(OnError(response));
     } else {
       dispacth(CreateProperty(response.data.propertyDto));
+      historyRouter.goBack();
     }
   };
 
@@ -78,7 +80,8 @@ export const UpdatePropertyAction =
     if (response.isAxiosError) {
       dispacth(OnError(response));
     } else {
-      dispacth(CreateProperty(response.data.propertyDto));
+      dispacth(UpdateProperty(response.data.propertyDto));
+      historyRouter.goBack();
     }
   };
 
@@ -89,7 +92,8 @@ export const DeletePropertyAction =
     if (response.isAxiosError) {
       dispacth(OnError(response));
     } else {
-      dispacth(CreateProperty(response.data.propertyDto));
+      dispacth(DeleteProperty(response.data.propertyDto));
+      historyRouter.goBack();
     }
   };
 

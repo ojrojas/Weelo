@@ -5,6 +5,10 @@ using Weelo.Core.Dtos;
 
 namespace Weelo.Core.BaseEndpoints.Owner
 {
+    /// <summary>
+    /// List owners reponse
+    /// </summary>
+    /// <author>Oscar Julian Rojas</author>
     public class ListOwnerResponse : BaseResponse
     {
         public ListOwnerResponse(Guid correlationId) : base(correlationId) { }

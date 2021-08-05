@@ -10,6 +10,7 @@ import {
   LIST_OWNER,
   UPDATE_OWNER,
 } from "../typeactions/owner.typeactions";
+import historyRouter from "../utils/history.router";
 
 const request = ApiRequest();
 const get = "list-owners";
@@ -63,7 +64,8 @@ export const CreateOwnerAction =
     if (response.isAxiosError) {
       dispatch(ErrorOwner(response));
     } else {
-      dispatch(ListOwner(response.data.ownerDto));
+      dispatch(CreateOwner(response.data.ownerDto));
+      historyRouter.goBack();
     }
   };
 
@@ -73,7 +75,8 @@ export const UpdateOwnerAction =
     if (response.isAxiosError) {
       dispatch(ErrorOwner(response));
     } else {
-      dispatch(ListOwner(response.data.ownerDto));
+      dispatch(UpdateOwner(response.data.ownerDto));
+      historyRouter.goBack();
     }
   };
 
@@ -83,7 +86,8 @@ export const DeleteOwnerAction =
     if (response.isAxiosError) {
       dispatch(ErrorOwner(response));
     } else {
-      dispatch(ListOwner(response.data.ownerDto));
+      dispatch(DeleteOwner(response.data.ownerDto));
+      historyRouter.goBack();
     }
   };
 
@@ -93,6 +97,6 @@ export const GetByIdOwnerAction =
     if (response.isAxiosError) {
       dispatch(ErrorOwner(response));
     } else {
-      dispatch(ListOwner(response.data.ownerDto));
+      dispatch(GetByIdOwner(response.data.ownerDto));
     }
   };

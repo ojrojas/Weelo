@@ -6,8 +6,19 @@ using System.Text;
 
 namespace Weelo.Api.Extension
 {
+    /// <summary>
+    /// Extension Jwt
+    /// </summary>
+    /// <author>Oscar Julian Rojas</author>
+    /// <date>02/08/2021</date>
     public static class JwtExtensions
     {
+        /// <summary>
+        /// AddJwtAuthentication from application
+        /// </summary>
+        /// <param name="services">IServiceCollection</param>
+        /// <param name="configuration">Configuration app</param>
+        /// <returns>Services jwt</returns>
         internal static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
             var key = Encoding.ASCII.GetBytes(configuration["JwtOptions:JwtSecret"]);

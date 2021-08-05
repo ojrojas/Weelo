@@ -13,7 +13,7 @@ import historyRouter from "../utils/history.router";
 
 const urilogin = routeweelo + "login";
 
-const request = ApiRequest();
+const request = new ApiRequest();
 
 export const Logins = (login: Login): AppActions => ({
   type: LOGIN,
@@ -35,7 +35,7 @@ export const LoginAction =
   async (dispatch: Dispatch<AppActions>): Promise<void> => {
     dispatch(Logins(login));
 
-    const response = await request.Request.Post(urilogin, login);
+    const response = await request.Post(urilogin, login);
     if (response.isAxiosError) {
       LoginFailure(response);
     } else {

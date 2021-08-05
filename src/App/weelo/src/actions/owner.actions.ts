@@ -12,7 +12,7 @@ import {
 } from "../typeactions/owner.typeactions";
 import historyRouter from "../utils/history.router";
 
-const request = ApiRequest();
+const request = new ApiRequest();
 const get = "list-owners";
 const post = "create-owner";
 const deletes = "delete-owner/";
@@ -50,7 +50,7 @@ export const ErrorOwner = (error: any): AppActions => ({
 });
 
 export const ListOwnerAction = () => async (dispatch: Dispatch<AppActions>) => {
-  const response = await request.Request.Get(get);
+  const response = await request.Get(get);
   if (response.isAxiosError) {
     dispatch(ErrorOwner(response));
   } else {
@@ -60,7 +60,7 @@ export const ListOwnerAction = () => async (dispatch: Dispatch<AppActions>) => {
 
 export const CreateOwnerAction =
   (owner: Owner) => async (dispatch: Dispatch<AppActions>) => {
-    const response = await request.Request.Post(post, owner);
+    const response = await request.Post(post, owner);
     if (response.isAxiosError) {
       dispatch(ErrorOwner(response));
     } else {
@@ -71,7 +71,7 @@ export const CreateOwnerAction =
 
 export const UpdateOwnerAction =
   (owner: Owner) => async (dispatch: Dispatch<AppActions>) => {
-    const response = await request.Request.Put(update, owner);
+    const response = await request.Put(update, owner);
     if (response.isAxiosError) {
       dispatch(ErrorOwner(response));
     } else {
@@ -82,7 +82,7 @@ export const UpdateOwnerAction =
 
 export const DeleteOwnerAction =
   (ownerId: string) => async (dispatch: Dispatch<AppActions>) => {
-    const response = await request.Request.Delete(deletes + ownerId);
+    const response = await request.Delete(deletes + ownerId);
     if (response.isAxiosError) {
       dispatch(ErrorOwner(response));
     } else {
@@ -93,7 +93,7 @@ export const DeleteOwnerAction =
 
 export const GetByIdOwnerAction =
   (ownerId: string) => async (dispatch: Dispatch<AppActions>) => {
-    const response = await request.Request.Get(getbyid + ownerId);
+    const response = await request.Get(getbyid + ownerId);
     if (response.isAxiosError) {
       dispatch(ErrorOwner(response));
     } else {

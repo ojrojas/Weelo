@@ -12,14 +12,14 @@ export interface LoginState {
   error: any;
 }
 
-const InitialState: LoginState = {
+const InitialLoginState: LoginState = {
   login: {} as Login,
   auth_token: "",
   error: null,
 };
 
 export const LoginReducer = (
-  state: LoginState = InitialState,
+  state: LoginState = InitialLoginState,
   action: LoginActionTypes
 ): LoginState => {
   switch (action.type) {

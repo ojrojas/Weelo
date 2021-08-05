@@ -141,11 +141,6 @@ const LoginPage = (props: Props) => {
           {errors.userName && (
             <div className={classes.errorscolors}>input your password</div>
           )}
-
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
           <Button
             type="submit"
             fullWidth
@@ -153,20 +148,8 @@ const LoginPage = (props: Props) => {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Login
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
         </form>
       </div>
       <Box mt={8}>

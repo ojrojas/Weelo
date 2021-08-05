@@ -11,7 +11,7 @@ import {
   UPDATE_PROPERTY_TRACE,
 } from "../typeactions/property-trace.typeactions";
 
-const request = ApiRequest();
+const request = new ApiRequest();
 
 const getPropertyTraceUrl = "list-propertytrace";
 const postPropertyTraceUrl = "create-propertytrace";
@@ -61,7 +61,7 @@ export const ErrorPropertyTrace = (error: any): AppActions => ({
 
 export const ListPropertyTraceAction =
   () => async (dispatch: Dispatch<AppActions>) => {
-    var response = await request.Request.Get(getPropertyTraceUrl);
+    var response = await request.Get(getPropertyTraceUrl);
     if (response.isAxiosError) {
       dispatch(ErrorPropertyTrace(response));
     } else {
@@ -71,7 +71,7 @@ export const ListPropertyTraceAction =
 
 export const CreatePropertyTraceAction =
   (propertyTrace: PropertyTrace) => async (dispatch: Dispatch<AppActions>) => {
-    var response = await request.Request.Post(
+    var response = await request.Post(
       postPropertyTraceUrl,
       propertyTrace
     );
@@ -84,7 +84,7 @@ export const CreatePropertyTraceAction =
 
 export const UpdatePropertyTraceAction =
   (propertyTrace: PropertyTrace) => async (dispatch: Dispatch<AppActions>) => {
-    var response = await request.Request.Post(
+    var response = await request.Post(
       putPropertyTraceUrl,
       propertyTrace
     );
@@ -97,7 +97,7 @@ export const UpdatePropertyTraceAction =
 
 export const DeletePropertyTraceAction =
   (propertyTraceId: string) => async (dispatch: Dispatch<AppActions>) => {
-    var response = await request.Request.Delete(
+    var response = await request.Delete(
       deletePropertyTraceUrl + propertyTraceId
     );
     if (response.isAxiosError) {
@@ -109,7 +109,7 @@ export const DeletePropertyTraceAction =
 
 export const GetByIdPropertyTraceAction =
   (propertyTraceId: string) => async (dispatch: Dispatch<AppActions>) => {
-    var response = await request.Request.Get(
+    var response = await request.Get(
       getByIdPropertyTraceUrl + propertyTraceId
     );
     if (response.isAxiosError) {

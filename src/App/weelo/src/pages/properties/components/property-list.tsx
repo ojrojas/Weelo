@@ -34,7 +34,7 @@ const PropertyListPage = (props: Props) => {
             addFavorites(propertyId),
           sharedFunction: (propertyId) => sharedProperty(propertyId),
         };
-        return <CardComponent cardComponentConfiguration={configuration} />;
+        return <CardComponent key={property.id} cardComponentConfiguration={configuration} />;
       })}
     </div>
   );

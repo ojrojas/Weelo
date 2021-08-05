@@ -11,7 +11,7 @@ import {
   UPDATE_PROPERTY_IMAGE,
 } from "../typeactions/property-image.typeactions";
 
-const request = ApiRequest();
+const request = new ApiRequest();
 
 const getPropertyImageUrl = "list-propertyimage";
 const postPropertyImageUrl = "create-propertyimage";
@@ -61,7 +61,7 @@ export const ErrorPropertyImage = (error: any): AppActions => ({
 
 export const ListPropertyImageAction =
   () => async (dispatch: Dispatch<AppActions>) => {
-    var response = await request.Request.Get(getPropertyImageUrl);
+    var response = await request.Get(getPropertyImageUrl);
     if (response.isAxiosError) {
       dispatch(ErrorPropertyImage(response));
     } else {
@@ -71,7 +71,7 @@ export const ListPropertyImageAction =
 
 export const CreatePropertyImageAction =
   (propertyImage: PropertyImage) => async (dispatch: Dispatch<AppActions>) => {
-    var response = await request.Request.Post(
+    var response = await request.Post(
       postPropertyImageUrl,
       propertyImage
     );
@@ -84,7 +84,7 @@ export const CreatePropertyImageAction =
 
 export const UpdatePropertyImageAction =
   (propertyImage: PropertyImage) => async (dispatch: Dispatch<AppActions>) => {
-    var response = await request.Request.Put(
+    var response = await request.Put(
       putPropertyImageUrl,
       propertyImage
     );
@@ -97,7 +97,7 @@ export const UpdatePropertyImageAction =
 
 export const DeletePropertyImageAction =
   (propertyImageId: string) => async (dispatch: Dispatch<AppActions>) => {
-    var response = await request.Request.Delete(
+    var response = await request.Delete(
       deletePropertyImageUrl + propertyImageId);
     if (response.isAxiosError) {
       dispatch(ErrorPropertyImage(response));
@@ -108,7 +108,7 @@ export const DeletePropertyImageAction =
 
 export const GetByIdPropertyImageAction =
   (propertyImageId: string) => async (dispatch: Dispatch<AppActions>) => {
-    var response = await request.Request.Get(
+    var response = await request.Get(
         getByIdPropertyImageUrl + propertyImageId
     );
     if (response.isAxiosError) {

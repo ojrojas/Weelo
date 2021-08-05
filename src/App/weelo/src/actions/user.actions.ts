@@ -19,7 +19,7 @@ const uriGetByIdUser = routeweelo + "getbyid-user/";
 const uriListUsers = routeweelo + "list-users";
 const uriUpdateUser = routeweelo + "update-user/";
 
-const request = ApiRequest();
+const request = new ApiRequest();
 
 export const LoadUserSuccess = (users: User[]): AppActions => ({
   type: LOAD_USERS,
@@ -54,7 +54,7 @@ export const OnError = (error: any): AppActions => ({
 export const LoadUserAction =
   () =>
   async (dispatch: Dispatch<AppActions>): Promise<void> => {
-    const response = await request.Request.Get(uriListUsers);
+    const response = await request.Get(uriListUsers);
     if (response.isAxiosError) {
       OnError(response);
     } else {
@@ -65,7 +65,7 @@ export const LoadUserAction =
 export const CreateUserAction =
   (user: User) =>
   async (dispatch: Dispatch<AppActions>): Promise<void> => {
-    const response = await request.Request.Post(uriCreateUser, user);
+    const response = await request.Post(uriCreateUser, user);
     if (response.isAxiosError) {
       OnError(response);
     } else {
@@ -77,7 +77,7 @@ export const CreateUserAction =
 export const UpdateUserAction =
   (user: User) =>
   async (dispatch: Dispatch<AppActions>): Promise<void> => {
-    const response = await request.Request.Put(uriUpdateUser + user.id, user);
+    const response = await request.Put(uriUpdateUser + user.id, user);
     if (response.isAxiosError) {
       OnError(response);
     } else {
@@ -89,7 +89,7 @@ export const UpdateUserAction =
 export const DeleteUserAction =
   (userId: string) =>
   async (dispatch: Dispatch<AppActions>): Promise<void> => {
-    const response = await request.Request.Delete(uriDeleteUser + userId);
+    const response = await request.Delete(uriDeleteUser + userId);
     if (response.isAxiosError) {
       OnError(response);
     } else {
@@ -101,7 +101,7 @@ export const DeleteUserAction =
 export const GetByIdUserAction =
   (userId: string) =>
   async (dispatch: Dispatch<AppActions>): Promise<void> => {
-    const response = await request.Request.Get(uriGetByIdUser + userId);
+    const response = await request.Get(uriGetByIdUser + userId);
     if (response.isAxiosError) {
       OnError(response);
     } else {

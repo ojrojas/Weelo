@@ -13,7 +13,7 @@ import {
 import { routeweelo } from "../utils/baseroute.route";
 import historyRouter from "../utils/history.router";
 
-const request = ApiRequest();
+const request = new ApiRequest();
 const getPropertyAll = routeweelo + "list-property";
 const createProperty = routeweelo + "create-property";
 const updateProperty = routeweelo + "update-property";
@@ -53,7 +53,7 @@ export const OnError = (error: any): AppActions => ({
 export const LoadPropertyAction =
   () =>
   async (dispacth: Dispatch<AppActions>): Promise<void> => {
-    const response = await request.Request.Get(getPropertyAll);
+    const response = await request.Get(getPropertyAll);
     if (response.isAxiosError) {
       dispacth(OnError(response));
     } else {
@@ -64,7 +64,7 @@ export const LoadPropertyAction =
 export const CreatePropertyAction =
   (property: Property) =>
   async (dispacth: Dispatch<AppActions>): Promise<void> => {
-    const response = await request.Request.Post(createProperty, property);
+    const response = await request.Post(createProperty, property);
     if (response.isAxiosError) {
       dispacth(OnError(response));
     } else {
@@ -76,7 +76,7 @@ export const CreatePropertyAction =
 export const UpdatePropertyAction =
   (property: Property) =>
   async (dispacth: Dispatch<AppActions>): Promise<void> => {
-    const response = await request.Request.Put(updateProperty, property);
+    const response = await request.Put(updateProperty, property);
     if (response.isAxiosError) {
       dispacth(OnError(response));
     } else {
@@ -88,7 +88,7 @@ export const UpdatePropertyAction =
 export const DeletePropertyAction =
   (property: Property) =>
   async (dispacth: Dispatch<AppActions>): Promise<void> => {
-    const response = await request.Request.Delete(deleteProperty);
+    const response = await request.Delete(deleteProperty);
     if (response.isAxiosError) {
       dispacth(OnError(response));
     } else {
@@ -100,7 +100,7 @@ export const DeletePropertyAction =
 export const GetByIdPropertyAction =
   (property: Property) =>
   async (dispacth: Dispatch<AppActions>): Promise<void> => {
-    const response = await request.Request.Delete(getByIdProperty);
+    const response = await request.Get(getByIdProperty);
     if (response.isAxiosError) {
       dispacth(OnError(response));
     } else {

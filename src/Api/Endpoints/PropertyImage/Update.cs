@@ -1,4 +1,5 @@
 ﻿using Ardalis.ApiEndpoints;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Threading;
@@ -8,6 +9,7 @@ using Weelo.Core.Interfaces;
 
 namespace Weelo.Api.Endpoints.PropertyImage
 {
+    [Authorize]
     /// <summary>
     /// Endpoint update property image
     /// </summary>

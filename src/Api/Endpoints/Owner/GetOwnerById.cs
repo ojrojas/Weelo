@@ -1,4 +1,5 @@
 ﻿using Ardalis.ApiEndpoints;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Threading;
@@ -8,6 +9,7 @@ using Weelo.Core.Interfaces;
 
 namespace Weelo.Api.Endpoints.Owner
 {
+    [Authorize]
     /// <summary>
     /// Get By Id Endpoint Owner
     /// </summary>
@@ -39,7 +41,7 @@ namespace Weelo.Api.Endpoints.Owner
             Description = "Get by id onwer",
             OperationId = "owner.getbyid",
             Tags = new[] { "OwnerEndpoints" })]
-        public override async Task<ActionResult<GetOwnerByIdResponse>> HandleAsync(GetOwnerByIdRequest request,
+        public override async Task<ActionResult<GetOwnerByIdResponse>> HandleAsync([FromRoute] GetOwnerByIdRequest request,
                                                                                    CancellationToken cancellationToken = default)
         {
             return await _ownerService.GetOwnerByIdAsync(request, cancellationToken);

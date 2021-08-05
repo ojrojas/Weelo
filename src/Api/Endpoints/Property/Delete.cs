@@ -1,4 +1,5 @@
 ﻿using Ardalis.ApiEndpoints;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Threading;
@@ -8,6 +9,7 @@ using Weelo.Core.Interfaces;
 
 namespace Weelo.Api.Endpoints.Property
 {
+    [Authorize]
     /// <summary>
     /// Endpoitn delte property 
     /// </summary>
@@ -38,7 +40,7 @@ namespace Weelo.Api.Endpoints.Property
          Description = "Delete property",
          OperationId = "property.delete",
          Tags = new[] { "PropertyEndpoints" })]
-        public async override Task<ActionResult<DeletePropertyResponse>> HandleAsync(DeletePropertyRequest request, CancellationToken cancellationToken = default)
+        public async override Task<ActionResult<DeletePropertyResponse>> HandleAsync([FromRoute] DeletePropertyRequest request, CancellationToken cancellationToken = default)
         {
             return await _propertyService.DeletePropertyAsync(request, cancellationToken);
         }

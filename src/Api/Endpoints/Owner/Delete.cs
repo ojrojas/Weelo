@@ -1,4 +1,5 @@
 ﻿using Ardalis.ApiEndpoints;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
@@ -9,6 +10,7 @@ using Weelo.Core.Interfaces;
 
 namespace Weelo.Api.Endpoints.Owner
 {
+    [Authorize]
     /// <summary>
     /// Endpoint Owner Delete
     /// </summary>
@@ -39,9 +41,9 @@ namespace Weelo.Api.Endpoints.Owner
             Description = "Delete onwer",
             OperationId = "owner.delete",
             Tags = new[] { "OwnerEndpoints" })]
-        public override Task<ActionResult<DeleteOwnerResponse>> HandleAsync(DeleteOwnerRequest request, CancellationToken cancellationToken = default)
+        public override async Task<ActionResult<DeleteOwnerResponse>> HandleAsync([FromRoute] DeleteOwnerRequest request, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return await _onwerService.DeleteOwnerAsync(request, cancellationToken);
         }
     }
 }

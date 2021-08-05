@@ -1,4 +1,5 @@
 ﻿using Ardalis.ApiEndpoints;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Threading;
@@ -8,6 +9,7 @@ using Weelo.Core.Interfaces;
 
 namespace Weelo.Api.Endpoints.Property
 {
+    [Authorize]
     /// <summary>
     /// Endpoint get by id property 
     /// </summary>
@@ -40,7 +42,7 @@ namespace Weelo.Api.Endpoints.Property
         Description = "Update property",
         OperationId = "property.update",
         Tags = new[] { "PropertyEndpoints" })]
-        public override async Task<ActionResult<GetPropertyByIdResponse>> HandleAsync(GetByIdProertyRequest request, CancellationToken cancellationToken = default)
+        public override async Task<ActionResult<GetPropertyByIdResponse>> HandleAsync([FromRoute] GetByIdProertyRequest request, CancellationToken cancellationToken = default)
         {
             return await _propertyService.GetPropertyByIdAsync(request, cancellationToken);
         }

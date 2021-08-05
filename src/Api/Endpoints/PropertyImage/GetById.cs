@@ -1,4 +1,5 @@
 ﻿using Ardalis.ApiEndpoints;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Threading;
@@ -8,6 +9,7 @@ using Weelo.Core.Interfaces;
 
 namespace Weelo.Api.Endpoints.PropertyImage
 {
+    [Authorize]
     /// <summary>
     /// Endpoint getbyid property image
     /// </summary>
@@ -39,7 +41,7 @@ namespace Weelo.Api.Endpoints.PropertyImage
         Description = "Update property images",
         OperationId = "propertyimage.update",
         Tags = new[] { "PropertyImageEndpoints" })]
-        public override async Task<ActionResult<GetByIdPropertyImageResponse>> HandleAsync(GetByIdProertyImageRequest request, CancellationToken cancellationToken = default)
+        public override async Task<ActionResult<GetByIdPropertyImageResponse>> HandleAsync([FromRoute] GetByIdProertyImageRequest request, CancellationToken cancellationToken = default)
         {
             return await _propertyService.GetPropertyImageByIdAsync(request, cancellationToken);
         }

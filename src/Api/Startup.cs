@@ -83,6 +83,8 @@ namespace Weelo.Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             /// configuration cors policity
             app.UseCors(CORS_POLICY);
 

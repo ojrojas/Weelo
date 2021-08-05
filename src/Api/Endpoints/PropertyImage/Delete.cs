@@ -1,4 +1,5 @@
 ﻿using Ardalis.ApiEndpoints;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Threading;
@@ -8,6 +9,7 @@ using Weelo.Core.Interfaces;
 
 namespace Weelo.Api.Endpoints.PropertyImage
 {
+    [Authorize]
     /// <summary>
     /// Endpoint delete property image
     /// </summary>
@@ -38,7 +40,7 @@ namespace Weelo.Api.Endpoints.PropertyImage
          Description = "Delete PropertyImage",
          OperationId = "Propertyimage.delete",
          Tags = new[] { "PropertyImageEndpoints" })]
-        public async override Task<ActionResult<DeletePropertyImageResponse>> HandleAsync(DeletePropertyImageRequest request, CancellationToken cancellationToken = default)
+        public async override Task<ActionResult<DeletePropertyImageResponse>> HandleAsync([FromRoute] DeletePropertyImageRequest request, CancellationToken cancellationToken = default)
         {
             return await _PropertyImageService.DeletePropertyImageAsync(request, cancellationToken);
         }

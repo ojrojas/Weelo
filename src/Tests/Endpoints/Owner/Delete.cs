@@ -50,7 +50,6 @@ namespace Tests.Endpoints.OwnerEndpoint
         [Fact]
         public async Task ReturnDeleteOwnerWithoutAuthentication()
         {
-            var ownerValidJson = GetValidOwnerJson();
             Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "INVALID_TOKEN");
             var response = await Client.DeleteAsync("api/delete-owner/"+Guid.NewGuid());
 

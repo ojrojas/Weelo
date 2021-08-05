@@ -32,7 +32,7 @@ namespace Weelo.Api.Endpoints.User
         /// <param name="request">Request users</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Updated user</returns>
-        [HttpPut("api/update-user/{UserId}")]
+        [HttpPut("api/update-user")]
         [SwaggerOperation(
          Summary = "Update user in application",
          Description = "Update user",

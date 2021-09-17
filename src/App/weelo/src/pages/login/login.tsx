@@ -1,12 +1,7 @@
-import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
@@ -81,7 +76,7 @@ const LoginPage = (props: Props) => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate  onSubmit={onSubmit}>
+        <form className={classes.form} noValidate onSubmit={onSubmit}>
           <Controller
             control={control}
             rules={{
@@ -90,10 +85,10 @@ const LoginPage = (props: Props) => {
             name="userName"
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <TextField
-              error={!!error}
-              helperText={
+                error={!!error}
+                helperText={
                   error ? error.message : null
-              }
+                }
                 variant="outlined"
                 margin="normal"
                 required
@@ -120,10 +115,10 @@ const LoginPage = (props: Props) => {
             name="password"
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <TextField
-              error={!!error}
-              helperText={
+                error={!!error}
+                helperText={
                   error ? error.message : null
-              }
+                }
                 variant="outlined"
                 margin="normal"
                 required
@@ -169,7 +164,7 @@ const mapDispatchToProps = {
 
 type Props = {
   loginState: LoginState;
-  LoginAction: (login: Login, uriReturl:string) => void;
+  LoginAction: (login: Login, uriReturl: string) => void;
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

@@ -26,8 +26,8 @@ namespace Weelo.Core.Services
 
         public async Task<CreatePropertyTraceResponse> CreatePropertyTraceAsync(CreatePropertyTraceRequest request, CancellationToken cancellationToken)
         {
-            var response = new CreatePropertyTraceResponse(request.CorrelationId);
-            _logger.LogInformation($"Create PropertyTrace Request - {request.CorrelationId}");
+            var response = new CreatePropertyTraceResponse(request.CorrelationId());
+            _logger.LogInformation($"Create PropertyTrace Request - {request.CorrelationId()}");
             var property = new PropertyTrace
             {
                 Name = request.Name,
@@ -49,8 +49,8 @@ namespace Weelo.Core.Services
 
         public async Task<UpdatePropertyTraceResponse> UpdatePropertyTraceAsync(UpdatePropertyTraceRequest request, CancellationToken cancellationToken)
         {
-            var response = new UpdatePropertyTraceResponse(request.CorrelationId);
-            _logger.LogInformation($"Update PropertyTrace Request - {request.CorrelationId}");
+            var response = new UpdatePropertyTraceResponse(request.CorrelationId());
+            _logger.LogInformation($"Update PropertyTrace Request - {request.CorrelationId()}");
             var propertyToUpdate = await _asyncRepository.GetByIdAsync(request.Id, cancellationToken);
 
             propertyToUpdate.UpdateProperties(
@@ -72,8 +72,8 @@ namespace Weelo.Core.Services
 
         public async Task<DeletePropertyTraceResponse> DeletePropertyTraceAsync(DeletePropertyTraceRequest request, CancellationToken cancellationToken)
         {
-            var response = new DeletePropertyTraceResponse(request.CorrelationId);
-            _logger.LogInformation($"Delete PropertyTrace Request - {request.CorrelationId}");
+            var response = new DeletePropertyTraceResponse(request.CorrelationId());
+            _logger.LogInformation($"Delete PropertyTrace Request - {request.CorrelationId()}");
             var ownerToDelete = await _asyncRepository.GetByIdAsync(request.PropertyTraceId, cancellationToken);
 
             var result = await _asyncRepository.DeleteAsync(ownerToDelete, cancellationToken);
@@ -86,8 +86,8 @@ namespace Weelo.Core.Services
 
         public async Task<GetByIdPropertyTraceResponse> GetByIdPropertyTraceAsync(GetByIdPropertyTraceRequest request, CancellationToken cancellationToken)
         {
-            var response = new GetByIdPropertyTraceResponse(request.CorrelationId);
-            _logger.LogInformation($"Get PropertyTrace By Id Request - {request.CorrelationId}");
+            var response = new GetByIdPropertyTraceResponse(request.CorrelationId());
+            _logger.LogInformation($"Get PropertyTrace By Id Request - {request.CorrelationId()}");
             var result = await _asyncRepository.GetByIdAsync(request.PropertyTraceId, cancellationToken);
             if (result == null)
                 response.Message = "Error to get property trace";

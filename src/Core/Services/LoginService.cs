@@ -40,8 +40,8 @@ namespace Weelo.Core.Services
         /// <returns>Login Response</returns>
         public async Task<LoginResponse> LoginUserAsync(LoginRequest request, CancellationToken cancellationToken)
         {
-            var response = new LoginResponse(request.CorrelationId);
-            _logger.LogInformation($"Login User Request - {request.CorrelationId}");
+            var response = new LoginResponse(request.CorrelationId());
+            _logger.LogInformation($"Login User Request - {request.CorrelationId()}");
             var spec = new LoginSpecification(request.UserName, request.Password);
 
             var result = await _asyncRepository.FirstOrDefaultAsync(spec, cancellationToken);

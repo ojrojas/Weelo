@@ -13,6 +13,6 @@ namespace Weelo.Core.BaseEndpoints
         /// </summary>
         protected Guid _correlationId = Guid.NewGuid();
 
-        public Guid CorrelationId => _correlationId;
+        public Guid CorrelationId() => _correlationId;
     }
 }

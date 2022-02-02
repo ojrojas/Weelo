@@ -42,8 +42,8 @@ namespace Weelo.Core.Services
         /// <returns>User created</returns>
         public async Task<CreateUserResponse> CreateUserAsync(CreateUserRequest request, CancellationToken cancellationToken)
         {
-            var response = new CreateUserResponse(request.CorrelationId);
-            _logger.LogInformation($"Create User Request - {request.CorrelationId}");
+            var response = new CreateUserResponse(request.CorrelationId());
+            _logger.LogInformation($"Create User Request - {request.CorrelationId()}");
             var userDto = new UserDto { 
                 Name = request.Name,
                 LastName = request.LastName,
@@ -70,8 +70,8 @@ namespace Weelo.Core.Services
         /// <returns>User Updated</returns>
         public async Task<UpdateUserResponse> UpdateUserAsync(UpdateUserRequest request, CancellationToken cancellationToken)
         {
-            var response = new UpdateUserResponse(request.CorrelationId);
-            _logger.LogInformation($"Update User Request - {request.CorrelationId}");
+            var response = new UpdateUserResponse(request.CorrelationId());
+            _logger.LogInformation($"Update User Request - {request.CorrelationId()}");
             var userToUpdate = await _asyncRepository.GetByIdAsync(request.Id, cancellationToken);
 
             userToUpdate.UpdateProperties(
@@ -100,8 +100,8 @@ namespace Weelo.Core.Services
         /// <returns>Deleted User</returns>
         public async Task<DeleteUserResponse> DeleteUserAsync(DeleteUserRequest request, CancellationToken cancellationToken)
         {
-            var response = new DeleteUserResponse(request.CorrelationId);
-            _logger.LogInformation($"Delete User Request - {request.CorrelationId}");
+            var response = new DeleteUserResponse(request.CorrelationId());
+            _logger.LogInformation($"Delete User Request - {request.CorrelationId()}");
             var ownerToDelete = await _asyncRepository.GetByIdAsync(request.UserId, cancellationToken);
 
             var result = await _asyncRepository.DeleteAsync(ownerToDelete, cancellationToken);
@@ -120,8 +120,8 @@ namespace Weelo.Core.Services
         /// <returns>User search</returns>
         public async Task<GetUserByIdResponse> GetUserByIdAsync(GetUserByIdResquest request, CancellationToken cancellationToken)
         {
-            var response = new GetUserByIdResponse(request.CorrelationId);
-            _logger.LogInformation($"Get User By Id Request - {request.CorrelationId}");
+            var response = new GetUserByIdResponse(request.CorrelationId());
+            _logger.LogInformation($"Get User By Id Request - {request.CorrelationId()}");
             var result = await _asyncRepository.GetByIdAsync(request.UserId, cancellationToken);
             if (result == null)
                 response.Message = "Error to get user";

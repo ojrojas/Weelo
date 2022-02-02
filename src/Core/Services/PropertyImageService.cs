@@ -44,8 +44,8 @@ namespace Weelo.Core.Services
         public async Task<CreatePropertyImageResponse> CreatePropertyImageAsync(CreatePropertyImageRequest request,
                                                                                 CancellationToken cancellationToken)
         {
-            var response = new CreatePropertyImageResponse(request.CorrelationId);
-            _logger.LogInformation($"Create PropertyImage Request - {request.CorrelationId}");
+            var response = new CreatePropertyImageResponse(request.CorrelationId());
+            _logger.LogInformation($"Create PropertyImage Request - {request.CorrelationId()}");
             var property = new PropertyImage
             {
                 File = request.File,
@@ -71,8 +71,8 @@ namespace Weelo.Core.Services
         public async Task<UpdatePropertyImageResponse> UpdatePropertyImageAsync(UpdatePropertyImageRequest request,
                                                                                 CancellationToken cancellationToken)
         {
-            var response = new UpdatePropertyImageResponse(request.CorrelationId);
-            _logger.LogInformation($"Update PropertyImage Request - {request.CorrelationId}");
+            var response = new UpdatePropertyImageResponse(request.CorrelationId());
+            _logger.LogInformation($"Update PropertyImage Request - {request.CorrelationId()}");
             var propertyToUpdate = await _asyncRepository.GetByIdAsync(request.Id, cancellationToken);
 
             propertyToUpdate.UpdateProperties(
@@ -103,8 +103,8 @@ namespace Weelo.Core.Services
         /// <returns>property deleted</returns>
         public async Task<DeletePropertyImageResponse> DeletePropertyImageAsync(DeletePropertyImageRequest request, CancellationToken cancellationToken)
         {
-            var response = new DeletePropertyImageResponse(request.CorrelationId);
-            _logger.LogInformation($"Delete PropertyImage Request - {request.CorrelationId}");
+            var response = new DeletePropertyImageResponse(request.CorrelationId());
+            _logger.LogInformation($"Delete PropertyImage Request - {request.CorrelationId()}");
             var ownerToDelete = await _asyncRepository.GetByIdAsync(request.PropertyImageId, cancellationToken);
 
             var result = await _asyncRepository.DeleteAsync(ownerToDelete, cancellationToken);
@@ -123,8 +123,8 @@ namespace Weelo.Core.Services
         /// <returns>Image response</returns>
         public async Task<GetByIdPropertyImageResponse> GetPropertyImageByIdAsync(GetByIdProertyImageRequest request, CancellationToken cancellationToken)
         {
-            var response = new GetByIdPropertyImageResponse(request.CorrelationId);
-            _logger.LogInformation($"Get PropertyImage By Id Request - {request.CorrelationId}");
+            var response = new GetByIdPropertyImageResponse(request.CorrelationId());
+            _logger.LogInformation($"Get PropertyImage By Id Request - {request.CorrelationId()}");
             var result = await _asyncRepository.GetByIdAsync(request.PropertyImageId, cancellationToken);
             if (result == null)
                 response.Message = "Error to get property image";

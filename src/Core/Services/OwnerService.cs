@@ -45,8 +45,8 @@ namespace Weelo.Core.Services
         /// <returns>Created Owner</returns>
         public async Task<CreateOwnerResponse> CreateOwnerAsync(CreateOwnerRequest request, CancellationToken cancellationToken)
         {
-            var response = new CreateOwnerResponse(request.CorrelationId);
-            _logger.LogInformation($"Create Owner Request - {request.CorrelationId}");
+            var response = new CreateOwnerResponse(request.CorrelationId());
+            _logger.LogInformation($"Create Owner Request - {request.CorrelationId()}");
             var owner = new Owner
             {
                 Name = request.Name,
@@ -74,8 +74,8 @@ namespace Weelo.Core.Services
         /// <returns>Updated owner</returns>
         public async Task<UpdateOwnerResponse> UpdateOwnerAsync(UpdateOwnerRequest request, CancellationToken cancellationToken)
         {
-            var response = new UpdateOwnerResponse(request.CorrelationId);
-            _logger.LogInformation($"Update Owner Request - {request.CorrelationId}");
+            var response = new UpdateOwnerResponse(request.CorrelationId());
+            _logger.LogInformation($"Update Owner Request - {request.CorrelationId()}");
             var ownerToUpdate = await _asyncRepository.GetByIdAsync(request.Id, cancellationToken);
 
             ownerToUpdate.UpdateProperties(
@@ -102,8 +102,8 @@ namespace Weelo.Core.Services
         /// <returns>Deleted owner</returns>
         public async Task<DeleteOwnerResponse> DeleteOwnerAsync(DeleteOwnerRequest request, CancellationToken cancellationToken)
         {
-            var response = new DeleteOwnerResponse(request.CorrelationId);
-            _logger.LogInformation($"Delete Owner Request - {request.CorrelationId}");
+            var response = new DeleteOwnerResponse(request.CorrelationId());
+            _logger.LogInformation($"Delete Owner Request - {request.CorrelationId()}");
             var ownerToDelete = await _asyncRepository.GetByIdAsync(request.OwnerId, cancellationToken);
 
             var result = await _asyncRepository.DeleteAsync(ownerToDelete, cancellationToken);
@@ -122,8 +122,8 @@ namespace Weelo.Core.Services
         /// <returns>Owner requested</returns>
         public async Task<GetOwnerByIdResponse> GetOwnerByIdAsync(GetOwnerByIdRequest request, CancellationToken cancellationToken)
         {
-            var response = new GetOwnerByIdResponse(request.CorrelationId);
-            _logger.LogInformation($"Get Owner By Id Request - {request.CorrelationId}");
+            var response = new GetOwnerByIdResponse(request.CorrelationId());
+            _logger.LogInformation($"Get Owner By Id Request - {request.CorrelationId()}");
             var result = await _asyncRepository.GetByIdAsync(request.OwnerId, cancellationToken);
             if (result == null)
                 response.Message = "Error to get owner";

@@ -65,8 +65,8 @@ namespace Weelo.Core.Services
         /// <returns>property created</returns>
         public async Task<CreatePropertyResponse> CreatePropertyAsync(CreatePropertyRequest request, CancellationToken cancellationToken)
         {
-            var response = new CreatePropertyResponse(request.CorrelationId);
-            _logger.LogInformation($"Create Property Request - {request.CorrelationId}");
+            var response = new CreatePropertyResponse(request.CorrelationId());
+            _logger.LogInformation($"Create Property Request - {request.CorrelationId()}");
             var property = new Property
             {
                 Name = request.Name,
@@ -124,8 +124,8 @@ namespace Weelo.Core.Services
         /// <returns>property updated</returns>
         public async Task<UpdatePropertyResponse> UpdatePropertyAsync(UpdatePropertyRequest request, CancellationToken cancellationToken)
         {
-            var response = new UpdatePropertyResponse(request.CorrelationId);
-            _logger.LogInformation($"Update Property Request - {request.CorrelationId}");
+            var response = new UpdatePropertyResponse(request.CorrelationId());
+            _logger.LogInformation($"Update Property Request - {request.CorrelationId()}");
             var propertyToUpdate = await _asyncRepository.GetByIdAsync(request.Id, cancellationToken);
 
             var propertyImage = new UpdatePropertyImageRequest
@@ -186,8 +186,8 @@ namespace Weelo.Core.Services
         /// <returns>property delete</returns>
         public async Task<DeletePropertyResponse> DeletePropertyAsync(DeletePropertyRequest request, CancellationToken cancellationToken)
         {
-            var response = new DeletePropertyResponse(request.CorrelationId);
-            _logger.LogInformation($"Delete Property Request - {request.CorrelationId}");
+            var response = new DeletePropertyResponse(request.CorrelationId());
+            _logger.LogInformation($"Delete Property Request - {request.CorrelationId()}");
             var ownerToDelete = await _asyncRepository.GetByIdAsync(request.PropertyId, cancellationToken);
 
             var result = await _asyncRepository.DeleteAsync(ownerToDelete, cancellationToken);
@@ -206,8 +206,8 @@ namespace Weelo.Core.Services
         /// <returns>property</returns>
         public async Task<GetPropertyByIdResponse> GetPropertyByIdAsync(GetByIdProertyRequest request, CancellationToken cancellationToken)
         {
-            var response = new GetPropertyByIdResponse(request.CorrelationId);
-            _logger.LogInformation($"Get Property By Id Request - {request.CorrelationId}");
+            var response = new GetPropertyByIdResponse(request.CorrelationId());
+            _logger.LogInformation($"Get Property By Id Request - {request.CorrelationId()}");
             var result = await _asyncRepository.GetByIdAsync(request.PropertyId, cancellationToken);
             if (result == null)
                 response.Message = "Error to get property";
